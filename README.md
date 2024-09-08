@@ -22,16 +22,16 @@ Lungo is designed for retail investors who are looking to improve their investme
 ### Features
 
 1. Macro Trend Definition & Asset Impact Analysis
-Users input macroeconomic trends (e.g., inflation, interest rate changes, technological advancements), and the app generates a detailed analysis of how these trends affect different asset classes such as stocks, bonds, commodities, and currencies.
+   Users input macroeconomic trends (e.g., inflation, interest rate changes, technological advancements), and the app generates a detailed analysis of how these trends affect different asset classes such as stocks, bonds, commodities, and currencies.
 
 2. Winners & Losers Generation
-Based on the impact analysis, the app identifies potential winning and losing assets across sectors, providing a list of stocks and other securities that are likely to benefit or suffer from each macro trend.
+   Based on the impact analysis, the app identifies potential winning and losing assets across sectors, providing a list of stocks and other securities that are likely to benefit or suffer from each macro trend.
 
 3. Financial Metric Evaluation
-Users can evaluate each asset using detailed financial metrics like price performance, valuation ratios (P/E, EV/EBITDA), and financial health indicators. The app will provide a comprehensive comparison to help users make informed decisions about adding assets to their portfolios.
+   Users can evaluate each asset using detailed financial metrics like price performance, valuation ratios (P/E, EV/EBITDA), and financial health indicators. The app will provide a comprehensive comparison to help users make informed decisions about adding assets to their portfolios.
 
 4. Portfolio Management
-Users can create custom portfolios based on macro trends and assign weightings to each stock. The app will track performance and provide ongoing analysis of the portfolio based on changing market conditions.
+   Users can create custom portfolios based on macro trends and assign weightings to each stock. The app will track performance and provide ongoing analysis of the portfolio based on changing market conditions.
 
 ## Implementation
 
@@ -47,6 +47,7 @@ Users can create custom portfolios based on macro trends and assign weightings t
 
 1. OpenAI GPT API: For generating AI-powered insights on the impact of macro trends on different asset classes.
 2. Financial Markets API: one of the below (TBC):
+
 - Alpha Vantage API: To pull real-time stock prices and financial data.
 - Yahoo Finance API: For broader market data and historical trends.
 - IEX Cloud API: To provide detailed financial metrics and stock data.
@@ -61,7 +62,20 @@ Users can create custom portfolios based on macro trends and assign weightings t
 
 ### Mockups
 
-Provide visuals of your app's screens. You can use tools like Figma or pictures of hand-drawn sketches.
+![LungoAI Wireframes - 1](images/lungoAI_wireframes_1.png)
+![LungoAI Wireframes - 2](images/lungoAI_wireframes_2.png)
+![LungoAI Wireframes - 3](images/lungoAI_wireframes_3.png)
+![LungoAI Wireframes - 4](images/lungoAI_wireframes_4.png)
+![LungoAI Wireframes - 5](images/lungoAI_wireframes_5.png)
+![LungoAI Wireframes - 6](images/lungoAI_wireframes_6.png)
+![LungoAI Wireframes - 7](images/lungoAI_wireframes_7.png)
+![LungoAI Wireframes - 8](images/lungoAI_wireframes_8.png)
+![LungoAI Wireframes - 9](images/lungoAI_wireframes_9.png)
+![LungoAI Wireframes - 10](images/lungoAI_wireframes_10.png)
+![LungoAI Wireframes - 11](images/lungoAI_wireframes_11.png)
+![LungoAI Wireframes - 12](images/lungoAI_wireframes_12.png)
+![LungoAI Wireframes - 13](images/lungoAI_wireframes_13.png)
+![LungoAI Technical Document](images/lungoAI_technicalDoc_1.png)
 
 ### Data
 
@@ -69,10 +83,10 @@ Provide visuals of your app's screens. You can use tools like Figma or pictures 
 2. Stock Data: Pulls real-time metrics and financial ratios from APIs to generate insights and analysis.
 3. AI Data: Uses OpenAI’s GPT API to analyze trends and generate impact reports on different asset classes.
 
-
 ### Endpoints
 
 Some basic endpoints, actuals TBD:
+
 1. POST /api/trends: Accepts user-defined macroeconomic trends and generates an analysis report.
 2. GET /api/stocks: Retrieves the list of winners and losers based on the selected trend.
 3. POST /api/portfolio: Allows users to add assets to their portfolio.
