@@ -8,22 +8,3 @@ body {
   font-family: "Orbitron", sans-serif;
 }
 
-.App {
-  text-align: center;
-}
-
-.App-header {
-  background-color: $color-background;
-  padding: 20px;
-  color: $color-primary;
-}
-
-.App-main .container {
-  background-color: $color-primary;
-  padding: 50px;
-  color: $color-background;
-  margin: 20px auto;
-  max-width: 600px;
-  border-radius: 8px;
-  text-align: left;
-}

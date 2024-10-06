@@ -45,24 +45,4 @@ body {
 
 body {
   font-family: "Orbitron", sans-serif;
-}
-
-.App {
-  text-align: center;
-}
-
-.App-header {
-  background-color: #121212;
-  padding: 20px;
-  color: #c3f564;
-}
-
-.App-main .container {
-  background-color: #c3f564;
-  padding: 50px;
-  color: #121212;
-  margin: 20px auto;
-  max-width: 600px;
-  border-radius: 8px;
-  text-align: left;
 }/*# sourceMappingURL=main.css.map */
