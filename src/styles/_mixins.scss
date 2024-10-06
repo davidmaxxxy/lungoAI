@@ -4,7 +4,7 @@
       @content;
     }
   } @else if $breakpoint == tablet {
-    @media (max-width: #{$breakpoint-tablet}) {
+    @media (min-width: #{$breakpoint-tablet}) {
       @content;
     }
   } @else if $breakpoint == desktop {
