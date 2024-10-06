@@ -1,0 +1,13 @@
+body {
+  background-color: $color-background;
+  color: $color-text;
+}
+
+.button {
+  background-color: $color-primary;
+  color: $color-background;
+
+  &:hover {
+    background-color: $color-accent;
+  }
+}
