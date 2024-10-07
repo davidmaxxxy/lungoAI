@@ -1,0 +1,88 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.form-table-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+
+  &__header {
+    display: flex;
+    background-color: $color-background;
+    color: $color-primary;
+    padding: 1rem;
+    border-bottom: 2px solid $color-primary;
+
+    &-cell {
+      flex: 1;
+      padding: 0.5rem;
+      text-align: center;
+      font-weight: bold;
+
+      &-icon {
+        margin-left: 0.5rem;
+        vertical-align: middle;
+      }
+    }
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__row {
+    display: flex;
+    padding: 1rem;
+    border-bottom: 1px solid $color-primary;
+    justify-content: space-between;
+    gap: 1rem; // Add gap between each cell
+
+    &:nth-child(even) {
+      background-color: lighten($color-background, 5%);
+    }
+  }
+
+  &__cell {
+    flex: 1;
+    padding: 1rem;
+    margin: 0.5rem 0;
+    border-radius: 10px;
+    border: solid $color-primary;
+
+    &:first-child {
+      background-color: $color-primary;
+      border-radius: 10px;
+      color: $color-secondary;
+      font-weight: 700;
+    }
+
+    input {
+      width: 100%;
+      padding: 0.5rem;
+      font-size: 1rem;
+      background-color: transparent;
+      border: none;
+      outline: none;
+      font-family: inherit;
+      color: inherit;
+    }
+  }
+
+  &__button {
+    background-color: $color-primary;
+    color: $color-background;
+    border: none;
+    padding: 1rem;
+    margin-top: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: lighten($color-primary, 10%);
+    }
+  }
+}

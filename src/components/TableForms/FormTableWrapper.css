@@ -1,0 +1,74 @@
+.form-table-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+.form-table-wrapper__header {
+  display: flex;
+  background-color: #121212;
+  color: #c3f564;
+  padding: 1rem;
+  border-bottom: 2px solid #c3f564;
+}
+.form-table-wrapper__header-cell {
+  flex: 1;
+  padding: 0.5rem;
+  text-align: center;
+  font-weight: bold;
+}
+.form-table-wrapper__header-cell-icon {
+  margin-left: 0.5rem;
+  vertical-align: middle;
+}
+.form-table-wrapper__body {
+  display: flex;
+  flex-direction: column;
+}
+.form-table-wrapper__row {
+  display: flex;
+  padding: 1rem;
+  border-bottom: 1px solid #c3f564;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.form-table-wrapper__row:nth-child(even) {
+  background-color: #1f1f1f;
+}
+.form-table-wrapper__cell {
+  flex: 1;
+  padding: 1rem;
+  margin: 0.5rem 0;
+  border-radius: 10px;
+  border: solid #c3f564;
+}
+.form-table-wrapper__cell:first-child {
+  background-color: #c3f564;
+  border-radius: 10px;
+  color: #4b7f52;
+  font-weight: 700;
+}
+.form-table-wrapper__cell input {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  font-family: inherit;
+  color: inherit;
+}
+.form-table-wrapper__button {
+  background-color: #c3f564;
+  color: #121212;
+  border: none;
+  padding: 1rem;
+  margin-top: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.form-table-wrapper__button:hover {
+  background-color: #d6f894;
+}/*# sourceMappingURL=FormTableWrapper.css.map */
