@@ -1,0 +1,94 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.hero {
+  margin-top: 5rem;
+  @include flex-center(column, center, center);
+  text-align: center;
+
+  @include respond-to(mobile) {
+    padding: 1rem;
+  }
+
+  @include respond-to(tablet) {
+    padding: 3rem;
+    margin-top: 10rem;
+  }
+
+  &__header {
+    @include flex-center(column, center, center);
+    background-color: $color-background;
+    padding: 2rem;
+    color: $color-primary;
+    width: 90%;
+    margin-bottom: 1.5rem;
+
+    @include respond-to(tablet) {
+      width: 60%;
+      padding: 1.5rem;
+    }
+
+    h1 {
+      margin-bottom: 1.5rem;
+      font-size: 1.8rem;
+      @include respond-to(tablet) {
+        font-size: 2.5rem;
+      }
+    }
+    p {
+      padding: 0.5rem 1rem;
+      @include respond-to(tablet) {
+        padding: 1rem 3rem;
+      }
+    }
+
+    &--container {
+      background-color: $color-primary;
+      padding: 1rem;
+      width: 90%;
+      color: $color-background;
+      margin: 20px auto;
+      border-radius: 8px;
+      text-align: left;
+
+      @include respond-to(tablet) {
+        padding: 1rem;
+      }
+    }
+  }
+
+  &__cta-container {
+    margin: 2rem 0;
+    @include flex-center(column, center, center);
+
+    h1 {
+      color: $color-primary;
+      margin-bottom: 1rem;
+    }
+
+    &__triangle {
+      width: 0;
+      height: 0;
+      border-left: 15px solid transparent;
+      border-right: 15px solid transparent;
+      border-top: 20px solid $color-primary;
+      animation: bounce 2s infinite;
+    }
+  }
+}
+
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}

@@ -1,0 +1,117 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.header {
+  position: absolute;
+  background-color: $color-background;
+  padding: 15px;
+  color: $color-primary;
+  @include flex-center(column, center, center);
+  text-align: center;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+
+  @include respond-to(tablet) {
+    position: fixed;
+    @include flex-center(column, space-between, center);
+    padding: 25px;
+  }
+
+  @include respond-to(desktop) {
+    padding: 20px;
+  }
+
+  &__container {
+    @include flex-center(column, center, center);
+    width: 100%;
+    padding: 10px 0;
+
+    @include respond-to(tablet) {
+      @include flex-center(row, space-between, center);
+      width: 80%;
+    }
+  }
+
+  &__logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: $color-primary;
+    margin-bottom: 10px;
+
+    @include respond-to(tablet) {
+      margin-bottom: 0;
+    }
+  }
+
+  &__menu-icon {
+    font-size: 3rem;
+    cursor: pointer;
+    color: $color-primary;
+    display: block;
+    margin-top: 10px;
+
+    @include respond-to(tablet) {
+      display: none;
+    }
+  }
+
+  &__buttons {
+    @include flex-center(column, space-between, center);
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    gap: 1rem;
+    margin-top: 10px;
+    transition: max-height 0.4s ease-in-out, opacity 0.4s ease-in-out;
+
+    @include respond-to(tablet) {
+      max-height: none;
+      opacity: 1;
+      overflow: visible;
+      flex-direction: row;
+      display: flex;
+      margin-top: 0;
+    }
+
+    &--open {
+      max-height: 500px;
+      opacity: 1;
+    }
+  }
+
+  &__button {
+    @include flex-center(row, center, center);
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    color: $color-background;
+    background-color: $color-primary;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: lighten($color-primary, 5%);
+      transform: scale(1.1);
+    }
+
+    &--light-mode {
+      background-color: $color-accent;
+      color: $color-background;
+    }
+
+    &--portfolio {
+      background-color: $color-secondary;
+    }
+
+    &--signup {
+      background-color: $color-primary;
+    }
+  }
+
+  &__icon {
+    width: 25px;
+    height: 25px;
+    margin: auto;
+  }
+}
