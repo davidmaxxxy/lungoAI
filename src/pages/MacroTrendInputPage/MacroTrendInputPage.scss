@@ -1,0 +1,52 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.macro-trend-input-page {
+  @include flex-center(column, center, center);
+  padding: 2rem;
+
+  &__stages {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    width: 80%;
+  }
+
+  &__stage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.5rem;
+    border-radius: 10px;
+    border: solid $color-primary;
+    transition: background-color 0.3s ease;
+
+    &--active {
+      background-color: $color-primary;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+  }
+
+  &__stage-number {
+    font-size: 2rem;
+    font-weight: bold;
+    color: $color-primary;
+
+    &--active {
+      color: $color-secondary;
+    }
+  }
+
+  &__stage-text {
+    margin-top: 0.5rem;
+    font-size: 1rem;
+    color: $color-text;
+    text-align: center;
+
+    &--active {
+      color: $color-secondary;
+      font-weight: bold;
+    }
+  }
+}

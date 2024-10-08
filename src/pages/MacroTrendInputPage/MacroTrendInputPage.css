@@ -1,0 +1,45 @@
+.macro-trend-input-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+.macro-trend-input-page__stages {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  width: 80%;
+}
+.macro-trend-input-page__stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.5rem;
+  border-radius: 10px;
+  border: solid #c3f564;
+  transition: background-color 0.3s ease;
+}
+.macro-trend-input-page__stage--active {
+  background-color: #c3f564;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.macro-trend-input-page__stage-number {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #c3f564;
+}
+.macro-trend-input-page__stage-number--active {
+  color: #4b7f52;
+}
+.macro-trend-input-page__stage-text {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  color: #e5e5e5;
+  text-align: center;
+}
+.macro-trend-input-page__stage-text--active {
+  color: #4b7f52;
+  font-weight: bold;
+}/*# sourceMappingURL=MacroTrendInputPage.css.map */

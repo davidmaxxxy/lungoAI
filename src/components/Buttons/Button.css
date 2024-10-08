@@ -1,0 +1,17 @@
+.stages-button {
+  font-family: "Orbitron", sans-serif;
+  font-size: 15px;
+  background-color: #c3f564;
+  border: solid #4b7f52;
+  border-radius: 10px;
+  padding: 1.2rem 1rem;
+  margin-top: 1rem;
+  margin-right: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  align-self: flex-end;
+}
+.stages-button:hover {
+  background-color: #d6f894;
+  transform: scale(1.1);
+}/*# sourceMappingURL=Button.css.map */

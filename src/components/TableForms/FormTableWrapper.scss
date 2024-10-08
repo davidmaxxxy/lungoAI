@@ -1,17 +1,21 @@
 @import "../../styles/variables";
 @import "../../styles/mixins";
+@import "../Buttons/Button.scss";
 
 .form-table-wrapper {
   display: flex;
   flex-direction: column;
-  width: 100%;
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 1rem;
+  width: 80%;
+  min-height: 60vh;
+  margin: 2 auto;
+  padding: 2rem;
+  background-color: lighten($color-background, 5%);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(195, 245, 100, 0.5);
 
   &__header {
     display: flex;
-    background-color: $color-background;
+    // background-color: $color-background;
     color: $color-primary;
     padding: 1rem;
     border-bottom: 2px solid $color-primary;
@@ -69,20 +73,6 @@
       outline: none;
       font-family: inherit;
       color: inherit;
-    }
-  }
-
-  &__button {
-    background-color: $color-primary;
-    color: $color-background;
-    border: none;
-    padding: 1rem;
-    margin-top: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-
-    &:hover {
-      background-color: lighten($color-primary, 10%);
     }
   }
 }

@@ -1,0 +1,21 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.stages-button {
+  font-family: "Orbitron", sans-serif;
+  font-size: 15px;
+  background-color: $color-primary;
+  border: solid $color-secondary;
+  border-radius: 10px;
+  padding: 1.2rem 1rem;
+  margin-top: 1rem;
+  margin-right: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  align-self: flex-end;
+
+  &:hover {
+    background-color: lighten($color-primary, 10%);
+    transform: scale(1.1);
+  }
+}

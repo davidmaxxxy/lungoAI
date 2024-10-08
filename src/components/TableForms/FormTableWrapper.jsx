@@ -1,7 +1,7 @@
 import React from "react";
 import FormRow from "./FormRow";
 import "../TableForms/FormTableWrapper.scss";
-import Button from "./Button";
+import Button from "../Buttons/Button";
 
 function FormTableWrapper({ headers, rows, handleFormSubmit }) {
   return (
