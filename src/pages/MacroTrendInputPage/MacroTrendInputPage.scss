@@ -23,7 +23,7 @@
     transition: background-color 0.3s ease;
 
     &--active {
-      background-color: $color-primary;
+      background-color: $color-secondary;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
   }
@@ -34,7 +34,7 @@
     color: $color-primary;
 
     &--active {
-      color: $color-secondary;
+      color: $color-text;
     }
   }
 
@@ -45,7 +45,7 @@
     text-align: center;
 
     &--active {
-      color: $color-secondary;
+      color: $color-text;
       font-weight: bold;
     }
   }

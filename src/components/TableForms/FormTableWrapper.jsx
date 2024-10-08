@@ -8,7 +8,12 @@ function FormTableWrapper({ headers, rows, handleFormSubmit }) {
     <form className="form-table-wrapper" onSubmit={handleFormSubmit}>
       <div className="form-table-wrapper__header">
         {headers.map((header, index) => (
-          <div key={index} className="form-table-wrapper__header-cell">
+          <div
+            key={index}
+            className={`form-table-wrapper__header-cell form-table-wrapper__header-cell--${
+              index === 0 ? "number" : index === 1 ? "theme" : "description"
+            }`}
+          >
             {header.text}
             {header.icon && (
               <img
@@ -25,7 +30,7 @@ function FormTableWrapper({ headers, rows, handleFormSubmit }) {
           <FormRow key={index} row={row} />
         ))}
       </div>
-      <Button type="submit" text={"Generate Impact Analysis"} />
+      <Button text="Generate impact analysis" type={"submit"} />
     </form>
   );
 }

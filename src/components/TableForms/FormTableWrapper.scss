@@ -9,22 +9,43 @@
   min-height: 60vh;
   margin: 2 auto;
   padding: 2rem;
-  background-color: lighten($color-background, 5%);
+  background-color: lighten($color-background, 2%);
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(195, 245, 100, 0.5);
 
   &__header {
     display: flex;
-    // background-color: $color-background;
-    color: $color-primary;
     padding: 1rem;
-    border-bottom: 2px solid $color-primary;
+    border-bottom: 1px solid $color-primary;
+    justify-content: space-between;
+    gap: 1rem; // Add gap between each cell
 
     &-cell {
       flex: 1;
-      padding: 0.5rem;
+      padding: 0.5rem 1rem;
       text-align: center;
       font-weight: bold;
+      text-align: left;
+
+      &:first-child {
+        text-align: center;
+      }
+
+      &--number {
+        flex: 0.1; // Small size for the row number
+        // border: solid 0.5px $color-secondary;
+        border-radius: 10px;
+      }
+      &--theme {
+        flex: 0.5; // Medium size for the theme column
+        // border: solid 0.5px $color-secondary;
+        border-radius: 10px;
+      }
+      &--description {
+        flex: 2;
+        // border: solid 0.5px $color-secondary;
+        border-radius: 10px;
+      }
 
       &-icon {
         margin-left: 0.5rem;
@@ -51,16 +72,31 @@
   }
 
   &__cell {
+    &--number {
+      flex: 0.1;
+      text-align: center;
+      align-items: center;
+      justify-content: center;
+      display: flex;
+    }
+    &--theme {
+      flex: 0.5;
+      border: solid 0.5px $color-secondary;
+      border-radius: 10px;
+    }
+    &--description {
+      flex: 2;
+      border: solid 0.5px $color-secondary;
+      border-radius: 10px;
+    }
     flex: 1;
-    padding: 1rem;
-    margin: 0.5rem 0;
-    border-radius: 10px;
-    border: solid $color-primary;
+    padding: 2rem 1rem;
+    background-color: lighten($color-background, 5%);
 
     &:first-child {
-      background-color: $color-primary;
+      background-color: $color-secondary;
       border-radius: 10px;
-      color: $color-secondary;
+      color: $color-text;
       font-weight: 700;
     }
 

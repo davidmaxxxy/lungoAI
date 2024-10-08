@@ -22,7 +22,7 @@
   transition: background-color 0.3s ease;
 }
 .macro-trend-input-page__stage--active {
-  background-color: #c3f564;
+  background-color: #4b7f52;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 .macro-trend-input-page__stage-number {
@@ -31,7 +31,7 @@
   color: #c3f564;
 }
 .macro-trend-input-page__stage-number--active {
-  color: #4b7f52;
+  color: #e5e5e5;
 }
 .macro-trend-input-page__stage-text {
   margin-top: 0.5rem;
@@ -40,6 +40,6 @@
   text-align: center;
 }
 .macro-trend-input-page__stage-text--active {
-  color: #4b7f52;
+  color: #e5e5e5;
   font-weight: bold;
 }/*# sourceMappingURL=MacroTrendInputPage.css.map */
