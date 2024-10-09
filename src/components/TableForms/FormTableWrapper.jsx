@@ -11,7 +11,7 @@ function FormTableWrapper({ headers, rows, handleFormSubmit }) {
           <div
             key={index}
             className={`form-table-wrapper__header-cell form-table-wrapper__header-cell--${
-              index === 0 ? "number" : index === 1 ? "theme" : "description"
+              index === 0 ? "number" : "description"
             }`}
           >
             {header.text}

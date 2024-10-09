@@ -6,14 +6,13 @@ import "../MacroTrendInputPage/MacroTrendInputPage.scss";
 function MacroTrendInputPage() {
   const [activeStage, setActiveStage] = useState(1);
 
-  const headers = [
-    { text: "#" },
-    { text: "Theme" },
-    { text: "Theme Description" },
-  ];
+  const headers = [{ text: "#" }, { text: "Theme Description" }];
 
   const rows = [
-    ["1", "Rising Global Inflation", "Describe the impact here..."],
+    [
+      "1",
+      "Provide a short theme description... E.g. Inflation has been raising in across the world",
+    ],
   ];
 
   const handleFormSubmit = async (e) => {
@@ -42,11 +41,11 @@ function MacroTrendInputPage() {
         {[
           {
             number: 1,
-            text: "Identify Macro Trends & Assess Asset Class Impact",
+            text: "Describe Macro Trends & Assess Asset Class Impact",
           },
           {
             number: 2,
-            text: "Generate Potential Winners & Losers from Asset Impact",
+            text: "Generate Investment Ideas Based on Provided Theme",
           },
           {
             number: 3,
