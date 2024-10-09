@@ -11,7 +11,7 @@ function MacroTrendInputPage() {
   const rows = [
     [
       "1",
-      "Provide a short theme description... E.g. Inflation has been raising in across the world",
+      "Provide a short theme description... E.g. Inflation has been raising across the world",
     ],
   ];
 
@@ -86,6 +86,7 @@ function MacroTrendInputPage() {
         headers={headers}
         rows={rows}
         handleFormSubmit={handleFormSubmit}
+        isInput={true} // Set as true to allow user input
       />
     </div>
   );

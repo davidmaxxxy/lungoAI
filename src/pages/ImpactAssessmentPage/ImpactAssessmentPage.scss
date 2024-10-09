@@ -1,0 +1,205 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.impact-assessment-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+
+  &__stages {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    width: 100%;
+
+    @include respond-to(tablet) {
+      flex-direction: row;
+      justify-content: space-between;
+      width: 80%;
+      gap: 2rem;
+    }
+  }
+
+  &__stage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.5rem;
+    border-radius: 10px;
+    border: solid $color-primary;
+    transition: background-color 0.3s ease;
+
+    &--active {
+      background-color: $color-secondary;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+  }
+
+  &__stage-number {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: $color-primary;
+
+    @include respond-to(tablet) {
+      font-size: 2rem;
+    }
+
+    &--active {
+      color: $color-text;
+    }
+  }
+
+  &__stage-text {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: $color-text;
+    text-align: center;
+
+    @include respond-to(tablet) {
+      font-size: 1rem;
+    }
+
+    &--active {
+      color: $color-text;
+      font-weight: bold;
+    }
+  }
+}
+
+.form-table-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  overflow-x: auto; // Allow horizontal scrolling if the content overflows
+  margin: 0 auto;
+  padding: 1rem;
+  background-color: lighten($color-background, 2%);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(195, 245, 100, 0.5);
+
+  &__header {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    padding: 1rem;
+    background-color: lighten($color-background, 10%);
+    font-weight: bold;
+    width: max-content; // Ensures that the header container is sized based on its children
+
+    &-cell {
+      flex: 1 1 150px; // Each header cell has the same flex rules as the content cells
+      min-width: 150px;
+      padding: 0.5rem;
+      text-align: center;
+      border: solid 1px $color-secondary;
+      border-radius: 5px;
+
+      &--number {
+        flex: 0 0 60px; // Fixed size for the number header
+        max-width: 60px;
+        text-align: center;
+        background-color: lighten($color-secondary, 20%);
+      }
+
+      &--description {
+        flex: 2;
+        background-color: lighten($color-primary, 20%);
+      }
+
+      &--impact {
+        flex: 3;
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: max-content; // Keep width consistent with the header for perfect alignment
+    margin-top: 1rem;
+  }
+
+  &__row {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    padding: 1rem;
+    border-bottom: 1px solid $color-primary;
+    width: max-content; // Ensures it aligns perfectly with header width
+
+    &:nth-child(even) {
+      background-color: lighten($color-background, 5%);
+    }
+  }
+
+  &__cell {
+    flex: 1 1 150px; // Each content cell mirrors the header's flex rules
+    min-width: 150px;
+    padding: 0.5rem;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    border: solid 1px $color-secondary;
+
+    &--number {
+      text-align: center;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 60px; // Fixed width similar to the header cell
+      max-width: 60px;
+      background-color: lighten($color-secondary, 20%);
+    }
+
+    &--description {
+      flex: 2;
+      background-color: lighten($color-primary, 20%);
+      padding: 1rem;
+    }
+
+    &--impact {
+      flex: 3;
+      padding: 1rem;
+
+      &-icon {
+        margin-right: 0.5rem;
+      }
+    }
+
+    // For the ImpactAssessment page, displaying content instead of input
+    &.impact-assessment-content {
+      background-color: lighten($color-background, 5%);
+    }
+  }
+
+  // This ensures all columns align well on different screens
+  @include respond-to(tablet) {
+    &__header {
+      gap: 1rem;
+    }
+
+    &__row {
+      padding: 1rem;
+      gap: 1rem;
+    }
+
+    &__cell {
+      padding: 1rem;
+    }
+  }
+
+  @include respond-to(desktop) {
+    width: 80%;
+    &__header,
+    &__row {
+      padding: 1rem;
+    }
+  }
+}

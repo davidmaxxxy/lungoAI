@@ -1,9 +1,6 @@
 @import "../../styles/variables";
 @import "../../styles/mixins";
 @import "../Buttons/Button.scss";
-@import "../../styles/variables";
-@import "../../styles/mixins";
-@import "../Buttons/Button.scss";
 
 .form-table-wrapper {
   display: flex;
@@ -14,41 +11,61 @@
   background-color: lighten($color-background, 2%);
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(195, 245, 100, 0.5);
+  overflow-x: auto; // Enable horizontal scrolling for the whole table
+
+  // To ensure the table header and body align when scrolled horizontally
+  &::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: darken($color-primary, 10%);
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: lighten($color-background, 10%);
+  }
 
   &__header {
-    display: none;
-    @include respond-to(tablet) {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
+    display: flex;
+    flex-direction: row;
+    width: 100%; // Take full width
+    padding: 1rem;
+    border-bottom: 1px solid $color-primary;
+    justify-content: space-between;
+    gap: 1rem;
 
-      &-cell {
-        padding: 0.5rem 0.5rem;
-        font-weight: bold;
-        text-align: left;
+    &-cell {
+      flex: 1;
+      padding: 0.5rem 0.5rem;
+      font-weight: bold;
+      text-align: left;
 
-        &--number {
-          flex: 0 0 10%;
-          max-width: 50px;
+      &--number {
+        flex: 0 0 5%; // Smaller width for number column
+        max-width: 50px; // Limit width
+        text-align: center;
+      }
 
-          text-align: center;
-          // border: solid red;
-        }
+      &--description {
+        flex: 2; // Larger for description
+        border-radius: 10px;
+      }
 
-        &--theme {
-          flex: 1;
-          border-radius: 10px;
-        }
-
-        &--description {
-          flex: 2;
-          border-radius: 10px;
-        }
+      &--impact {
+        flex: 1;
+        display: flex;
+        align-items: center;
 
         &-icon {
-          margin-left: 0.5rem;
-          vertical-align: middle;
+          margin-right: 0.5rem;
         }
+      }
+
+      &-icon {
+        margin-left: 0.5rem;
+        vertical-align: middle;
       }
     }
   }
@@ -63,6 +80,7 @@
   &__row {
     display: flex;
     flex-direction: row;
+    width: 100%; // Ensure the row also takes the full width of the container
     padding: 2rem 0.5rem;
     border-bottom: 1px solid $color-primary;
     border-top: 1px solid $color-primary;
@@ -83,24 +101,30 @@
       text-align: center;
       align-items: center;
       justify-content: center;
-      flex: 0 0 10%;
-      max-width: 70px;
+      flex: 0 0 5%;
+      max-width: 50px;
       border: solid 0.5px $color-primary;
       background-color: $color-secondary;
-    }
-
-    &--theme {
-      flex: 1;
-      border: solid 0.5px $color-secondary;
-      border-radius: 10px;
-      padding: 1.2rem 0.2rem;
     }
 
     &--description {
       flex: 2;
       border: solid 0.5px $color-secondary;
       border-radius: 10px;
-      padding: 0rem 0.2rem;
+      padding: 1.2rem 0.2rem;
+    }
+
+    &--impact {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      border: solid 0.5px $color-secondary;
+      border-radius: 10px;
+      padding: 1.2rem 0.2rem;
+
+      &-icon {
+        margin-right: 0.5rem;
+      }
     }
 
     textarea {
@@ -122,7 +146,6 @@
     &__header {
       flex-direction: row;
       padding: 1rem;
-
       justify-content: space-between;
       gap: 1rem;
     }
@@ -146,12 +169,12 @@
         max-width: 50px; // Limits how large it can grow
       }
 
-      &--theme {
-        flex: 1 0 20%;
-      }
-
       &--description {
         flex: 2 0 50%;
+      }
+
+      &--impact {
+        flex: 1;
       }
     }
   }

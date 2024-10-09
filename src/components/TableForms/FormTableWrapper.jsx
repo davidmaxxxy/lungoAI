@@ -3,7 +3,7 @@ import FormRow from "./FormRow";
 import "../TableForms/FormTableWrapper.scss";
 import Button from "../Buttons/Button";
 
-function FormTableWrapper({ headers, rows, handleFormSubmit }) {
+function FormTableWrapper({ headers, rows, handleFormSubmit, isInput }) {
   return (
     <form className="form-table-wrapper" onSubmit={handleFormSubmit}>
       <div className="form-table-wrapper__header">
@@ -11,26 +11,24 @@ function FormTableWrapper({ headers, rows, handleFormSubmit }) {
           <div
             key={index}
             className={`form-table-wrapper__header-cell form-table-wrapper__header-cell--${
-              index === 0 ? "number" : "description"
+              index === 0 ? "number" : index === 1 ? "description" : "impact"
             }`}
           >
-            {header.text}
             {header.icon && (
-              <img
-                src={header.icon}
-                alt={`${header.text} icon`}
-                className="form-table-wrapper__header-icon"
-              />
+              <span className="form-table-wrapper__header-icon">
+                {header.icon}
+              </span>
             )}
+            {header.text}
           </div>
         ))}
       </div>
       <div className="form-table-wrapper__body">
         {rows.map((row, index) => (
-          <FormRow key={index} row={row} />
+          <FormRow key={index} row={row} isInput={isInput} />
         ))}
       </div>
-      <Button text="Generate impact analysis" type={"submit"} />
+      {isInput && <Button text="Generate impact analysis" type={"submit"} />}
     </form>
   );
 }

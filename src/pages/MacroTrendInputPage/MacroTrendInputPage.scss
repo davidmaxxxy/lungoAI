@@ -19,7 +19,7 @@
     width: 100%;
 
     @include respond-to(tablet) {
-      flex-direction: row; // Adjust to row for larger screens
+      flex-direction: row;
       justify-content: space-between;
       width: 80%;
       gap: 2rem;
@@ -52,12 +52,12 @@
   }
 
   &__stage-number {
-    font-size: 1.5rem; // Smaller font size for mobile
+    font-size: 1.5rem;
     font-weight: bold;
     color: $color-primary;
 
     @include respond-to(tablet) {
-      font-size: 2rem; // Increase font size for larger screens
+      font-size: 2rem;
     }
 
     &--active {
@@ -67,12 +67,12 @@
 
   &__stage-text {
     margin-top: 0.5rem;
-    font-size: 0.9rem; // Smaller font size for mobile
+    font-size: 0.9rem;
     color: $color-text;
     text-align: center;
 
     @include respond-to(tablet) {
-      font-size: 1rem; // Increase font size for larger screens
+      font-size: 1rem;
     }
 
     &--active {
