@@ -2,27 +2,62 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2rem;
-}
-@media (min-width: 768px) {
-  .macro-trend-input-page {
-    padding: 2rem;
-  }
+  padding: 1rem;
 }
 .macro-trend-input-page__stages {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  align-items: center;
   gap: 1rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   width: 100%;
 }
+.macro-trend-input-page__form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 1rem;
+  align-items: center;
+}
+.macro-trend-input-page__form--header {
+  width: 100%;
+  text-align: center;
+  margin-top: 1rem;
+}
+.macro-trend-input-page__form--textarea {
+  width: 100%;
+  padding: 1rem;
+  background-color: #1f1f1f;
+  font-size: 1rem;
+  border: 1px solid #4b7f52;
+  border-radius: 5px;
+  resize: vertical;
+  color: #e5e5e5;
+}
 @media (min-width: 768px) {
-  .macro-trend-input-page__stages {
-    flex-direction: row;
-    justify-content: space-between;
-    width: 80%;
-    gap: 2rem;
+  .macro-trend-input-page__form--textarea {
+    padding: 5rem 1rem;
   }
+}
+.macro-trend-input-page__form--textarea::-moz-placeholder {
+  color: white;
+  opacity: 0.7;
+}
+.macro-trend-input-page__form--textarea::placeholder {
+  color: white;
+  opacity: 0.7;
+}
+.macro-trend-input-page__button {
+  padding: 0.8rem 1.5rem;
+  background-color: #c3f564;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.macro-trend-input-page__button:hover {
+  background-color: #b0f234;
 }
 .macro-trend-input-page__stage {
   display: flex;
@@ -33,30 +68,14 @@
   border: solid #c3f564;
   transition: background-color 0.3s ease;
 }
-@media (min-width: 768px) {
-  .macro-trend-input-page__stage {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 0.5rem;
-    border-radius: 10px;
-    border: solid #c3f564;
-    transition: background-color 0.3s ease;
-  }
-}
 .macro-trend-input-page__stage--active {
   background-color: #4b7f52;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 .macro-trend-input-page__stage-number {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: bold;
   color: #c3f564;
-}
-@media (min-width: 768px) {
-  .macro-trend-input-page__stage-number {
-    font-size: 2rem;
-  }
 }
 .macro-trend-input-page__stage-number--active {
   color: #e5e5e5;
@@ -67,12 +86,27 @@
   color: #e5e5e5;
   text-align: center;
 }
-@media (min-width: 768px) {
-  .macro-trend-input-page__stage-text {
-    font-size: 1rem;
-  }
-}
 .macro-trend-input-page__stage-text--active {
   color: #e5e5e5;
   font-weight: bold;
+}
+@media (min-width: 768px) {
+  .macro-trend-input-page {
+    padding: 2rem;
+  }
+  .macro-trend-input-page__stages {
+    flex-direction: row;
+    justify-content: space-between;
+    width: 80%;
+    gap: 2rem;
+  }
+  .macro-trend-input-page__form {
+    width: 60%;
+  }
+  .macro-trend-input-page__stage-number {
+    font-size: 2rem;
+  }
+  .macro-trend-input-page__stage-text {
+    font-size: 1rem;
+  }
 }/*# sourceMappingURL=MacroTrendInputPage.css.map */

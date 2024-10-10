@@ -112,6 +112,7 @@
       border: solid 0.5px $color-secondary;
       border-radius: 10px;
       padding: 1.2rem 0.2rem;
+      // border: solid red;
     }
 
     &--impact {
@@ -129,9 +130,11 @@
 
     textarea {
       width: 100%;
-      padding: 4rem 0.5rem;
+      padding: 0.5rem;
       font-size: 1rem;
+      background-color: transparent;
       border: none;
+      border-radius: 5px;
       outline: none;
       font-family: inherit;
       color: inherit;

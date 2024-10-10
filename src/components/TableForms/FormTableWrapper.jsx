@@ -2,6 +2,7 @@ import React from "react";
 import FormRow from "./FormRow";
 import "../TableForms/FormTableWrapper.scss";
 import Button from "../Buttons/Button";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function FormTableWrapper({ headers, rows, handleFormSubmit, isInput }) {
   return (

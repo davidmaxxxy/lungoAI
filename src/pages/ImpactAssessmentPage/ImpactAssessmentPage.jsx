@@ -12,107 +12,69 @@ import {
 import "./ImpactAssessmentPage.scss";
 
 function ImpactAssessmentPage() {
-  const [activeStage, setActiveStage] = useState(2);
-
-  const headers = [
-    { text: "#" },
-    { text: "Theme Description" },
-    { text: "Impact on Stocks", icon: <FontAwesomeIcon icon={faChartLine} /> },
+  // Asset classes and respective icons
+  const assetClasses = [
     {
-      text: "Impact on Bonds",
-      icon: <FontAwesomeIcon icon={faFileContract} />,
+      name: "Stocks",
+      icon: faChartLine,
+      impact: "High - Negative impact expected due to increased inflation.",
     },
     {
-      text: "Impact on Soft Commodities",
-      icon: <FontAwesomeIcon icon={faWheatAlt} />,
+      name: "Bonds",
+      icon: faFileContract,
+      impact: "Medium - Yields may fluctuate.",
     },
     {
-      text: "Impact on Hard Commodities",
-      icon: <FontAwesomeIcon icon={faGem} />,
+      name: "Soft Commodities",
+      icon: faWheatAlt,
+      impact: "Medium - Increased volatility in prices.",
     },
     {
-      text: "Impact on Currencies",
-      icon: <FontAwesomeIcon icon={faMoneyBillAlt} />,
+      name: "Hard Commodities",
+      icon: faGem,
+      impact: "High - Price increases expected in precious metals.",
     },
     {
-      text: "Impact on Cryptocurrencies",
-      icon: <FontAwesomeIcon icon={faBitcoinSign} />,
+      name: "Currencies",
+      icon: faMoneyBillAlt,
+      impact: "Low - Some devaluation risk.",
+    },
+    {
+      name: "Cryptocurrencies",
+      icon: faBitcoinSign,
+      impact: "Medium - Uncertain response to macro conditions.",
     },
   ];
-
-  // Placeholder rows for demonstration
-  const rows = [
-    [
-      "1",
-      "Rising Global Inflation",
-      "High - Negative effect on stocks.",
-      "Medium - Changes in yields expected.",
-      "Medium - Volatility expected in commodities like wheat.",
-      "High - Hard commodities may see price increase.",
-      "Medium - Possible currency devaluation.",
-      "Low - Cryptos may behave differently.",
-    ],
-  ];
-
-  const handleFormSubmit = async (e) => {
-    e.preventDefault();
-    console.log("Form submitted for Impact Assessment.");
-  };
 
   return (
     <div className="impact-assessment-page">
-      <div className="impact-assessment-page__stages">
-        {[
-          {
-            number: 1,
-            text: "Describe Macro Trends & Assess Asset Class Impact",
-          },
-          {
-            number: 2,
-            text: "Generate Investment Ideas Based on Provided Theme",
-          },
-          {
-            number: 3,
-            text: "Analyze Key Metrics & Choose Assets for Your Portfolio",
-          },
-        ].map((stage, index) => (
-          <div
-            key={index}
-            className={`impact-assessment-page__stage ${
-              activeStage === stage.number
-                ? "impact-assessment-page__stage--active"
-                : ""
-            }`}
-          >
-            <span
-              className={`impact-assessment-page__stage-number ${
-                activeStage === stage.number
-                  ? "impact-assessment-page__stage-number--active"
-                  : ""
-              }`}
-            >
-              {stage.number}
-            </span>
-            <span
-              className={`impact-assessment-page__stage-text ${
-                activeStage === stage.number
-                  ? "impact-assessment-page__stage-text--active"
-                  : ""
-              }`}
-            >
-              {stage.text}
-            </span>
+      <div className="impact-assessment-page__table">
+        {/* Headers */}
+        <div className="impact-assessment-page__header">
+          <div className="impact-assessment-page__header--cell">
+            Asset Class
+          </div>
+          <div className="impact-assessment-page__header--cell">
+            Impact Assessment
+          </div>
+        </div>
+
+        {/* Body */}
+        {assetClasses.map((assetClass, index) => (
+          <div key={index} className="impact-assessment-page__row">
+            <div className="impact-assessment-page__cell impact-assessment-page__cell--asset-class">
+              <FontAwesomeIcon
+                icon={assetClass.icon}
+                className="impact-assessment-page__icon"
+              />{" "}
+              {assetClass.name}
+            </div>
+            <div className="impact-assessment-page__cell impact-assessment-page__cell--impact">
+              {assetClass.impact}
+            </div>
           </div>
         ))}
       </div>
-
-      <h1>Impact Assessment for Macro Trends</h1>
-      <FormTableWrapper
-        headers={headers}
-        rows={rows}
-        handleFormSubmit={handleFormSubmit}
-        isInput={false} // Set as false to display static content
-      />
     </div>
   );
 }

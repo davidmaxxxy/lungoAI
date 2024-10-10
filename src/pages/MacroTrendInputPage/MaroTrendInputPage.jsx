@@ -1,42 +1,24 @@
 import React, { useState } from "react";
 import FormTableWrapper from "../../components/TableForms/FormTableWrapper";
+import ImpactAssessmentPage from "../ImpactAssessmentPage/ImpactAssessmentPage";
 import axios from "axios";
 import "../MacroTrendInputPage/MacroTrendInputPage.scss";
+import Button from "../../components/Buttons/Button";
 
 function MacroTrendInputPage() {
   const [activeStage, setActiveStage] = useState(1);
+  const [themeDescription, setThemeDescription] = useState("");
+  const [impactDataVisible, setImpactDataVisible] = useState(false);
 
-  const headers = [{ text: "#" }, { text: "Theme Description" }];
-
-  const rows = [
-    [
-      "1",
-      "Provide a short theme description... E.g. Inflation has been raising across the world",
-    ],
-  ];
-
-  const handleFormSubmit = async (e) => {
+  const handleFormSubmit = (e) => {
     e.preventDefault();
-    const formData = new FormData(e.target);
-    const rowData = [];
-
-    formData.forEach((value) => rowData.push(value));
-
-    // Assuming you have backend logic to call ChatGPT API
-    try {
-      const response = await axios.post("/api/generate-impact-analysis", {
-        data: rowData,
-      });
-
-      const data = response.data;
-      console.log("Generated Impact Analysis: ", data);
-    } catch (error) {
-      console.error("Error generating impact analysis: ", error);
-    }
+    setImpactDataVisible(true); // Directly set visibility to true to render ImpactAssessmentPage
+    setActiveStage(2);
   };
 
   return (
     <div className="macro-trend-input-page">
+      {/* Render the Stages */}
       <div className="macro-trend-input-page__stages">
         {[
           {
@@ -82,12 +64,27 @@ function MacroTrendInputPage() {
         ))}
       </div>
 
-      <FormTableWrapper
-        headers={headers}
-        rows={rows}
-        handleFormSubmit={handleFormSubmit}
-        isInput={true} // Set as true to allow user input
-      />
+      {/* Form Section for Theme Description */}
+      <form
+        className="macro-trend-input-page__form"
+        onSubmit={handleFormSubmit}
+      >
+        <h2 className="macro-trend-input-page__form--header">
+          Describe macro trend
+        </h2>
+        <textarea
+          className="macro-trend-input-page__form--textarea"
+          value={themeDescription}
+          onChange={(e) => setThemeDescription(e.target.value)}
+          placeholder="Provide a short theme description... E.g. Inflation has been raising across the world"
+          rows={4}
+          required
+        />
+        <Button text={"Generate Impact Assessment"} type={"submit"} />
+      </form>
+
+      {/* Render ImpactAssessmentPage below if impactDataVisible is true */}
+      {impactDataVisible && <ImpactAssessmentPage />}
     </div>
   );
 }

@@ -12,17 +12,17 @@ function FormRow({ row, isInput }) {
         >
           {index === 0 ? (
             <span>{cell}</span> // Always display the row number as a span
-          ) : isInput ? (
-            <input
-              type="text"
+          ) : isInput && index === 1 ? (
+            <textarea
               name={`row-${index}`}
               defaultValue={cell}
-              className="form-table-wrapper__input"
+              className="form-table-wrapper__textarea"
               required
+              rows={4}
               style={{ backgroundColor: "transparent" }}
             />
           ) : (
-            <span>{cell}</span> // Display the provided data as text for non-input cases
+            <span>{cell}</span>
           )}
         </div>
       ))}

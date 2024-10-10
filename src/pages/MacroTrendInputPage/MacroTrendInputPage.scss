@@ -1,28 +1,70 @@
 @import "../../styles/variables";
 @import "../../styles/mixins";
 
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
 .macro-trend-input-page {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2rem;
+  padding: 1rem;
 
-  @include respond-to(tablet) {
-    padding: 2rem;
-  }
-
+  // Mobile-first styles
   &__stages {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    align-items: center;
     gap: 1rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     width: 100%;
+  }
 
-    @include respond-to(tablet) {
-      flex-direction: row;
-      justify-content: space-between;
-      width: 80%;
-      gap: 2rem;
+  &__form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 1rem;
+    align-items: center;
+
+    &--header {
+      width: 100%;
+      text-align: center;
+      margin-top: 1rem;
+    }
+
+    &--textarea {
+      width: 100%;
+      padding: 1rem;
+      background-color: lighten($color-background, 5%);
+      font-size: 1rem;
+      border: 1px solid $color-secondary;
+      border-radius: 5px;
+      resize: vertical;
+      color: $color-text;
+
+      @include respond-to(tablet) {
+        padding: 5rem 1rem;
+      }
+
+      &::placeholder {
+        color: lighten($color-text, 40%);
+        opacity: 0.7;
+      }
+    }
+  }
+
+  &__button {
+    padding: 0.8rem 1.5rem;
+    background-color: $color-primary;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: darken($color-primary, 10%);
     }
   }
 
@@ -35,16 +77,6 @@
     border: solid $color-primary;
     transition: background-color 0.3s ease;
 
-    @include respond-to(tablet) {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 0.5rem;
-      border-radius: 10px;
-      border: solid $color-primary;
-      transition: background-color 0.3s ease;
-    }
-
     &--active {
       background-color: $color-secondary;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -52,13 +84,9 @@
   }
 
   &__stage-number {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     font-weight: bold;
     color: $color-primary;
-
-    @include respond-to(tablet) {
-      font-size: 2rem;
-    }
 
     &--active {
       color: $color-text;
@@ -71,13 +99,33 @@
     color: $color-text;
     text-align: center;
 
-    @include respond-to(tablet) {
-      font-size: 1rem;
-    }
-
     &--active {
       color: $color-text;
       font-weight: bold;
+    }
+  }
+
+  // Tablet and larger screen styles
+  @include respond-to(tablet) {
+    padding: 2rem;
+
+    &__stages {
+      flex-direction: row;
+      justify-content: space-between;
+      width: 80%;
+      gap: 2rem;
+    }
+
+    &__form {
+      width: 60%;
+    }
+
+    &__stage-number {
+      font-size: 2rem;
+    }
+
+    &__stage-text {
+      font-size: 1rem;
     }
   }
 }
