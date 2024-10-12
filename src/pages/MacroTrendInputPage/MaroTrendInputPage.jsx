@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import FormTableWrapper from "../../components/TableForms/FormTableWrapper";
+
 import ImpactAssessmentPage from "../ImpactAssessmentPage/ImpactAssessmentPage";
 import axios from "axios";
 import "../MacroTrendInputPage/MacroTrendInputPage.scss";
 import Button from "../../components/Buttons/Button";
+import "../../components/Buttons/Button.scss";
 
 function MacroTrendInputPage() {
   const [activeStage, setActiveStage] = useState(1);

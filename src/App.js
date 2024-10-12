@@ -17,7 +17,6 @@ function App() {
       <Routes>
         {" "}
         <Route path="/" element={<MacroTrendInputPage />} />{" "}
-        <Route path="/impact-assessment" element={<ImpactAssessmentPage />} />
       </Routes>
     </Router>
   );
