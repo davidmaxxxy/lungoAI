@@ -1,4 +1,6 @@
+import axios from "axios";
 import React, { useState } from "react";
+import "./ImpactAssessmentPage.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChartLine,
@@ -8,74 +10,61 @@ import {
   faMoneyBillAlt,
   faBitcoinSign,
 } from "@fortawesome/free-solid-svg-icons";
-import "./ImpactAssessmentPage.scss";
 
-function ImpactAssessmentPage() {
-  // Asset classes and respective icons
-  const assetClasses = [
-    {
-      name: "Stocks",
-      icon: faChartLine,
-      impact: "High - Negative impact expected due to increased inflation.",
-    },
-    {
-      name: "Bonds",
-      icon: faFileContract,
-      impact: "Medium - Yields may fluctuate.",
-    },
-    {
-      name: "Soft Commodities",
-      icon: faWheatAlt,
-      impact: "Medium - Increased volatility in prices.",
-    },
-    {
-      name: "Hard Commodities",
-      icon: faGem,
-      impact: "High - Price increases expected in precious metals.",
-    },
-    {
-      name: "Currencies",
-      icon: faMoneyBillAlt,
-      impact: "Low - Some devaluation risk.",
-    },
-    {
-      name: "Cryptocurrencies",
-      icon: faBitcoinSign,
-      impact: "Medium - Uncertain response to macro conditions.",
-    },
-  ];
+function ImpactAssessmentPage({ data }) {
+  if (!data || !data.asset_classes) {
+    return null;
+  }
+
+  const assetClassIcons = {
+    Stocks: faChartLine,
+    Bonds: faFileContract,
+    "Soft Commodities": faWheatAlt,
+    "Hard Commodities": faGem,
+    Currencies: faMoneyBillAlt,
+    Cryptocurrencies: faBitcoinSign,
+  };
 
   return (
     <div className="impact-assessment-page">
-      <div className="impact-assessment-page__table">
-        {/* Headers */}
-        <div className="impact-assessment-page__header">
-          <div className="impact-assessment-page__header--cell">
-            Asset Class
+      <h2>Impact Analysis of Macroeconomic Trend</h2>
+
+      {data.asset_classes.map((assetClass, index) => (
+        <div key={index} className="impact-assessment-page__asset">
+          <div className="impact-assessment-page__asset-header">
+            <FontAwesomeIcon
+              icon={assetClassIcons[assetClass.assetClass]}
+              className="impact-assessment-page__icon"
+            />
+            <h3>{assetClass.assetClass}</h3>
           </div>
-          <div className="impact-assessment-page__header--cell">
-            Impact Assessment
+          <div className="impact-assessment-page__impact-level">
+            <h4>Impact Level: {assetClass.impactLevel}</h4>
+          </div>
+
+          <div className="impact-assessment-page__subcategories">
+            {Object.entries(assetClass.subcategories).map(
+              ([subcategory, description], subIndex) => (
+                <div
+                  key={subIndex}
+                  className="impact-assessment-page__subcategory"
+                >
+                  <h4>{formatSubcategoryTitle(subcategory)}</h4>
+                  <p>{description}</p>
+                </div>
+              )
+            )}
           </div>
         </div>
-
-        {/* Body */}
-        {assetClasses.map((assetClass, index) => (
-          <div key={index} className="impact-assessment-page__row">
-            <div className="impact-assessment-page__cell impact-assessment-page__cell--asset-class">
-              <FontAwesomeIcon
-                icon={assetClass.icon}
-                className="impact-assessment-page__icon"
-              />{" "}
-              {assetClass.name}
-            </div>
-            <div className="impact-assessment-page__cell impact-assessment-page__cell--impact">
-              {assetClass.impact}
-            </div>
-          </div>
-        ))}
-      </div>
+      ))}
     </div>
   );
+}
+
+function formatSubcategoryTitle(subcategory) {
+  return subcategory
+    .replace(/_/g, " ") // Replace underscores with spaces
+    .replace(/\b\w/g, (l) => l.toUpperCase()); // Capitalize first letter of each word
 }
 
 export default ImpactAssessmentPage;

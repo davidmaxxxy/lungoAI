@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../Header/Header.scss";
-import { FaSun, FaBars, FaTimes } from "react-icons/fa"; // Using react-icons for icons
+import { FaSun, FaBars, FaTimes } from "react-icons/fa";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);

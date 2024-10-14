@@ -5,78 +5,82 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 1rem;
+  padding: 2rem;
   width: 100%;
+  box-sizing: border-box;
 
-  &__table {
+  h2 {
+    color: $color-primary;
+    margin-bottom: 1.5rem;
+  }
+
+  &__asset {
     display: flex;
+    align-items: center;
     flex-direction: column;
     width: 100%;
     max-width: 800px;
-    border: 1px solid $color-secondary;
+    margin-bottom: 1.5rem;
+    padding: 1.5rem;
+    border: 4px solid $color-secondary;
     border-radius: 10px;
-    overflow-x: auto;
+    background-color: lighten($color-background, 5%);
+    box-shadow: 0px 4px 10px $color-primary;
+
+    @include respond-to(tablet) {
+      padding: 2rem;
+    }
   }
 
-  &__header {
+  &__asset-header {
     display: flex;
-    width: 100%;
-    background-color: $color-secondary;
-    color: white;
-    padding: 1rem;
+    align-items: center;
+    margin-bottom: 1rem;
 
-    &--cell {
-      flex: 1;
-      text-align: left;
-      padding: 0.5rem;
-      font-weight: bold;
+    .impact-assessment-page__icon {
+      font-size: 2rem;
+      color: $color-primary;
+      margin-right: 1rem;
+    }
 
-      &:first-child {
-        flex: 1.5; // Asset class name gets a bit more space
+    h3 {
+      font-size: 1.5rem;
+      color: $color-primary;
+      margin: 0;
+    }
+  }
+
+  &__impact-level {
+    margin-top: 0.5rem;
+
+    h4 {
+      font-size: 1.2rem;
+      color: $color-text;
+      margin: 0;
+    }
+  }
+
+  &__subcategories {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+    border-top: 1px solid $color-secondary;
+    padding: 2rem 0;
+
+    &__subcategory {
+      margin-bottom: 1rem;
+
+      h4 {
+        font-size: 1.2rem;
+        color: $color-primary;
+        margin-bottom: 0.5rem;
       }
-    }
-  }
 
-  &__row {
-    display: flex;
-    flex-direction: row;
-    padding: 1rem;
-    width: 100%;
-    border-top: 1px solid $color-primary;
-
-    &:nth-child(even) {
-      background-color: lighten($color-background, 10%);
-    }
-  }
-
-  &__cell {
-    flex: 1;
-    text-align: left;
-    padding: 0.5rem;
-
-    &--asset-class {
-      flex: 1.5; // Asset class column is wider
-      font-weight: bold;
-    }
-
-    &--impact {
-      flex: 1;
-    }
-  }
-
-  // Tablet and larger screens
-  @include respond-to(tablet) {
-    &__header,
-    &__row {
-      padding: 1rem;
-    }
-
-    &__header--cell {
-      padding: 1rem;
-    }
-
-    &__cell {
-      padding: 1rem;
+      p {
+        font-size: 1rem;
+        color: $color-text;
+        margin: 0;
+      }
     }
   }
 }

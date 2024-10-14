@@ -2,64 +2,72 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 1rem;
+  padding: 2rem;
   width: 100%;
+  box-sizing: border-box;
 }
-.impact-assessment-page__table {
+.impact-assessment-page h2 {
+  color: #c3f564;
+  margin-bottom: 1.5rem;
+}
+.impact-assessment-page__asset {
   display: flex;
+  align-items: center;
   flex-direction: column;
   width: 100%;
   max-width: 800px;
-  border: 1px solid #4b7f52;
+  margin-bottom: 1.5rem;
+  padding: 1.5rem;
+  border: 4px solid #4b7f52;
   border-radius: 10px;
-  overflow-x: auto;
-}
-.impact-assessment-page__header {
-  display: flex;
-  width: 100%;
-  background-color: #4b7f52;
-  color: white;
-  padding: 1rem;
-}
-.impact-assessment-page__header--cell {
-  flex: 1;
-  text-align: left;
-  padding: 0.5rem;
-  font-weight: bold;
-}
-.impact-assessment-page__header--cell:first-child {
-  flex: 1.5;
-}
-.impact-assessment-page__row {
-  display: flex;
-  flex-direction: row;
-  padding: 1rem;
-  width: 100%;
-  border-top: 1px solid #c3f564;
-}
-.impact-assessment-page__row:nth-child(even) {
-  background-color: #2c2c2c;
-}
-.impact-assessment-page__cell {
-  flex: 1;
-  text-align: left;
-  padding: 0.5rem;
-}
-.impact-assessment-page__cell--asset-class {
-  flex: 1.5;
-  font-weight: bold;
-}
-.impact-assessment-page__cell--impact {
-  flex: 1;
+  background-color: #1f1f1f;
+  box-shadow: 0px 4px 10px #c3f564;
 }
 @media (min-width: 768px) {
-  .impact-assessment-page__header, .impact-assessment-page__row {
-    padding: 1rem;
+  .impact-assessment-page__asset {
+    padding: 2rem;
   }
-  .impact-assessment-page__header--cell {
-    padding: 1rem;
-  }
-  .impact-assessment-page__cell {
-    padding: 1rem;
-  }
+}
+.impact-assessment-page__asset-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.impact-assessment-page__asset-header .impact-assessment-page__icon {
+  font-size: 2rem;
+  color: #c3f564;
+  margin-right: 1rem;
+}
+.impact-assessment-page__asset-header h3 {
+  font-size: 1.5rem;
+  color: #c3f564;
+  margin: 0;
+}
+.impact-assessment-page__impact-level {
+  margin-top: 0.5rem;
+}
+.impact-assessment-page__impact-level h4 {
+  font-size: 1.2rem;
+  color: #e5e5e5;
+  margin: 0;
+}
+.impact-assessment-page__subcategories {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+  border-top: 1px solid #4b7f52;
+  padding: 2rem 0;
+}
+.impact-assessment-page__subcategories__subcategory {
+  margin-bottom: 1rem;
+}
+.impact-assessment-page__subcategories__subcategory h4 {
+  font-size: 1.2rem;
+  color: #c3f564;
+  margin-bottom: 0.5rem;
+}
+.impact-assessment-page__subcategories__subcategory p {
+  font-size: 1rem;
+  color: #e5e5e5;
+  margin: 0;
 }/*# sourceMappingURL=ImpactAssessmentPage.css.map */

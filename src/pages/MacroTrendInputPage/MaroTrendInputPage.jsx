@@ -4,19 +4,41 @@ import ImpactAssessmentPage from "../ImpactAssessmentPage/ImpactAssessmentPage";
 import axios from "axios";
 import "../MacroTrendInputPage/MacroTrendInputPage.scss";
 import Button from "../../components/Buttons/Button";
-import "../../components/Buttons/Button.scss";
 
 function MacroTrendInputPage() {
   const [activeStage, setActiveStage] = useState(1);
   const [themeDescription, setThemeDescription] = useState("");
-  const [impactDataVisible, setImpactDataVisible] = useState(false);
+  const [impactData, setImpactData] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [formSubmitted, setFormSubmitted] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
-    setImpactDataVisible(true); // Directly set visibility to true to render ImpactAssessmentPage
-    setActiveStage(2);
-  };
+    setIsLoading(true);
+    setFormSubmitted(true);
+    setError("");
 
+    try {
+      const response = await axios.post(
+        "http://localhost:5001/api/generate-impact-analysis",
+        {
+          data: themeDescription,
+        }
+      );
+
+      if (response.status === 200) {
+        setImpactData(response.data);
+        setActiveStage(2);
+      }
+    } catch (error) {
+      console.error("Error generating impact analysis:", error);
+      setError("Failed to generate impact analysis. Please try again");
+      setFormSubmitted(false);
+    } finally {
+      setIsLoading(false);
+    }
+  };
   return (
     <div className="macro-trend-input-page">
       {/* Render the Stages */}
@@ -65,27 +87,39 @@ function MacroTrendInputPage() {
         ))}
       </div>
 
-      {/* Form Section for Theme Description */}
-      <form
-        className="macro-trend-input-page__form"
-        onSubmit={handleFormSubmit}
-      >
-        <h2 className="macro-trend-input-page__form--header">
-          Describe macro trend
-        </h2>
-        <textarea
-          className="macro-trend-input-page__form--textarea"
-          value={themeDescription}
-          onChange={(e) => setThemeDescription(e.target.value)}
-          placeholder="Provide a short theme description... E.g. Inflation has been raising across the world"
-          rows={4}
-          required
-        />
-        <Button text={"Generate Impact Assessment"} type={"submit"} />
-      </form>
+      {!formSubmitted && (
+        <form
+          className="macro-trend-input-page__form"
+          onSubmit={handleFormSubmit}
+        >
+          <h2 className="macro-trend-input-page__form--header">
+            Describe macro trend
+          </h2>
+          <textarea
+            className="macro-trend-input-page__form--textarea"
+            value={themeDescription}
+            onChange={(e) => setThemeDescription(e.target.value)}
+            placeholder="Provide a short theme description... E.g. Inflation has been raising across the world"
+            rows={4}
+            required
+          />
+          <Button
+            text={isLoading ? "Generating..." : "Generate Impact Assessment"}
+            type={"submit"}
+            disabled={isLoading}
+          />
+        </form>
+      )}
 
-      {/* Render ImpactAssessmentPage below if impactDataVisible is true */}
-      {impactDataVisible && <ImpactAssessmentPage />}
+      {isLoading && (
+        <div className="macro-trend-input-page__loading">
+          <div className="spinner"></div>
+          <p>Generating impact assessment...</p>
+        </div>
+      )}
+
+      {error && <div className="error-message"> {error}</div>}
+      {impactData && <ImpactAssessmentPage data={impactData} />}
     </div>
   );
 }

@@ -59,6 +59,10 @@
 .macro-trend-input-page__button:hover {
   background-color: #b0f234;
 }
+.macro-trend-input-page__button:disabled {
+  background-color: #e8fbc4;
+  cursor: not-allowed;
+}
 .macro-trend-input-page__stage {
   display: flex;
   flex-direction: column;
@@ -89,6 +93,37 @@
 .macro-trend-input-page__stage-text--active {
   color: #e5e5e5;
   font-weight: bold;
+}
+.macro-trend-input-page__loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+}
+.macro-trend-input-page__loading .spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #c3f564;
+  border-top: 4px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+.macro-trend-input-page__loading p {
+  margin-top: 1rem;
+  color: #c3f564;
+  font-weight: bold;
+}
+.macro-trend-input-page .error-message {
+  color: #ffc857;
+  margin-top: 1rem;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 @media (min-width: 768px) {
   .macro-trend-input-page {
