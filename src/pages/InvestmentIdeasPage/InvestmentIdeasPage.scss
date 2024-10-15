@@ -15,9 +15,10 @@
   }
 
   .investment-ideas-table {
-    width: 100%;
-    max-width: 1000px;
+    width: 90%;
     overflow-x: auto;
+    border-radius: 20px;
+    box-shadow: 0px 4px 10px $color-primary;
 
     table {
       width: 100%;
@@ -30,11 +31,12 @@
 
           th {
             padding: 1rem;
-            text-align: left;
+            text-align: center;
             font-size: 0.9rem;
 
             @include respond-to(tablet) {
               font-size: 1rem;
+              text-align: center;
             }
           }
         }
@@ -54,20 +56,51 @@
 
             @include respond-to(tablet) {
               font-size: 1rem;
+              text-align: center;
+              border: solid 1px $color-grids;
             }
           }
 
-          button {
-            padding: 0.5rem 1rem;
+          .add-button {
+            font-family: "Orbitron", sans-serif;
+            font-size: 14px;
             background-color: $color-primary;
-            color: white;
-            border: none;
-            border-radius: 5px;
+            border: solid $color-secondary;
+            border-radius: 10px;
+            padding: 0.5rem 2rem;
             cursor: pointer;
-            margin-right: 0.5rem;
+            transition: background-color 0.3s ease;
+            margin-bottom: 0.5rem;
 
             &:hover {
-              background-color: darken($color-primary, 10%);
+              background-color: lighten($color-primary, 10%);
+              transform: scale(1.1);
+            }
+
+            &:disabled {
+              background-color: lighten($color-primary, 20%);
+              cursor: not-allowed;
+            }
+          }
+          .replace-button {
+            font-family: "Orbitron", sans-serif;
+            font-size: 14px;
+            background-color: $color-negative;
+            border: solid red;
+            border-radius: 10px;
+            padding: 0.5rem 2rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            color: white;
+
+            &:hover {
+              background-color: lighten($color-primary, 10%);
+              transform: scale(1.1);
+            }
+
+            &:disabled {
+              background-color: lighten($color-primary, 20%);
+              cursor: not-allowed;
             }
           }
         }

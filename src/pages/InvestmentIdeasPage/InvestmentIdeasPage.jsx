@@ -212,6 +212,7 @@ function InvestmentIdeasPage() {
                 <th>Stock Name</th>
                 <th>Stock Price</th>
                 <th>Position (Long/Short)</th>
+                <th>Actions</th>
                 <th>1M Price Change</th>
                 <th>3M Price Change</th>
                 <th>1Y Price Change</th>
@@ -222,7 +223,6 @@ function InvestmentIdeasPage() {
                 <th>Price to Book</th>
                 <th>EV/Revenue</th>
                 <th>EV/EBITDA</th>
-                <th>Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -233,6 +233,20 @@ function InvestmentIdeasPage() {
                   <td>{idea.stockName}</td>
                   <td>{idea.stockPrice}</td>
                   <td>{idea.position}</td>
+                  <td>
+                    <button
+                      className="add-button"
+                      onClick={() => handleAddToPortfolio(idea)}
+                    >
+                      + Add to Portfolio
+                    </button>
+                    <button
+                      className="replace-button"
+                      onClick={() => handleReplaceIdea(index)}
+                    >
+                       : Replace
+                    </button>
+                  </td>
                   <td>{idea.oneMonthChange}</td>
                   <td>{idea.threeMonthChange}</td>
                   <td>{idea.oneYearChange}</td>
@@ -243,14 +257,6 @@ function InvestmentIdeasPage() {
                   <td>{idea.priceToBook}</td>
                   <td>{idea.evRevenue}</td>
                   <td>{idea.evEbitda}</td>
-                  <td>
-                    <button onClick={() => handleAddToPortfolio(idea)}>
-                      Add to Portfolio
-                    </button>
-                    <button onClick={() => handleReplaceIdea(index)}>
-                      Replace
-                    </button>
-                  </td>
                 </tr>
               ))}
             </tbody>
