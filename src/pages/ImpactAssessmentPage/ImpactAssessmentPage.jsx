@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import "./ImpactAssessmentPage.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Button from "../../components/Buttons/Button";
 import {
   faChartLine,
   faFileContract,

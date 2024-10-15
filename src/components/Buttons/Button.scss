@@ -8,14 +8,16 @@
   border: solid $color-secondary;
   border-radius: 10px;
   padding: 1.2rem 1rem;
-  margin-top: 5rem;
-  margin-right: 1rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  align-self: flex-end;
 
   &:hover {
     background-color: lighten($color-primary, 10%);
     transform: scale(1.1);
+  }
+
+  &:disabled {
+    background-color: lighten($color-primary, 20%);
+    cursor: not-allowed;
   }
 }

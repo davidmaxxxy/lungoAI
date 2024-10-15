@@ -9,11 +9,12 @@
 .impact-assessment-page h2 {
   color: #c3f564;
   margin-bottom: 1.5rem;
+  text-align: center;
 }
 .impact-assessment-page__asset {
   display: flex;
-  align-items: center;
   flex-direction: column;
+  align-items: center;
   width: 100%;
   max-width: 800px;
   margin-bottom: 1.5rem;
@@ -33,7 +34,7 @@
   align-items: center;
   margin-bottom: 1rem;
 }
-.impact-assessment-page__asset-header .impact-assessment-page__icon {
+.impact-assessment-page__asset-header-icon {
   font-size: 2rem;
   color: #c3f564;
   margin-right: 1rem;
@@ -42,6 +43,7 @@
   font-size: 1.5rem;
   color: #c3f564;
   margin: 0;
+  text-align: center;
 }
 .impact-assessment-page__impact-level {
   margin-top: 0.5rem;
@@ -56,18 +58,54 @@
   flex-direction: column;
   margin-top: 1rem;
   border-top: 1px solid #4b7f52;
-  padding: 2rem 0;
+  padding: 1.5rem 0;
 }
-.impact-assessment-page__subcategories__subcategory {
+.impact-assessment-page__subcategories-subcategory {
   margin-bottom: 1rem;
 }
-.impact-assessment-page__subcategories__subcategory h4 {
+.impact-assessment-page__subcategories-subcategory h4 {
   font-size: 1.2rem;
   color: #c3f564;
   margin-bottom: 0.5rem;
 }
-.impact-assessment-page__subcategories__subcategory p {
+.impact-assessment-page__subcategories-subcategory p {
   font-size: 1rem;
   color: #e5e5e5;
   margin: 0;
+}
+.impact-assessment-page__generate-ideas-button-container {
+  position: fixed;
+  bottom: 20px;
+  display: flex;
+  justify-content: center;
+  z-index: 1000;
+  width: auto;
+}
+.impact-assessment-page__generate-ideas-button-container .stages-button {
+  font-family: "Orbitron", sans-serif;
+  font-size: 15px;
+  background-color: #c3f564;
+  border: solid #4b7f52;
+  border-radius: 10px;
+  padding: 1.2rem 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.impact-assessment-page__generate-ideas-button-container .stages-button:hover {
+  background-color: #d6f894;
+  transform: scale(1.1);
+}
+.impact-assessment-page__generate-ideas-button-container .stages-button:disabled {
+  background-color: #e8fbc4;
+  cursor: not-allowed;
+}
+.impact-assessment-page__icon {
+  font-size: 2rem;
+  color: #c3f564;
+  margin-right: 1rem;
+}
+@media (min-width: 768px) {
+  .impact-assessment-page__icon {
+    font-size: 2.5rem;
+  }
 }/*# sourceMappingURL=ImpactAssessmentPage.css.map */

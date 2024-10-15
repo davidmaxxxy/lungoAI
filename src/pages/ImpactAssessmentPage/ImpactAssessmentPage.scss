@@ -12,12 +12,13 @@
   h2 {
     color: $color-primary;
     margin-bottom: 1.5rem;
+    text-align: center;
   }
 
   &__asset {
     display: flex;
-    align-items: center;
     flex-direction: column;
+    align-items: center;
     width: 100%;
     max-width: 800px;
     margin-bottom: 1.5rem;
@@ -37,7 +38,7 @@
     align-items: center;
     margin-bottom: 1rem;
 
-    .impact-assessment-page__icon {
+    &-icon {
       font-size: 2rem;
       color: $color-primary;
       margin-right: 1rem;
@@ -47,6 +48,7 @@
       font-size: 1.5rem;
       color: $color-primary;
       margin: 0;
+      text-align: center;
     }
   }
 
@@ -65,9 +67,9 @@
     flex-direction: column;
     margin-top: 1rem;
     border-top: 1px solid $color-secondary;
-    padding: 2rem 0;
+    padding: 1.5rem 0;
 
-    &__subcategory {
+    &-subcategory {
       margin-bottom: 1rem;
 
       h4 {
@@ -81,6 +83,55 @@
         color: $color-text;
         margin: 0;
       }
+    }
+  }
+
+  // Generate Ideas Button Container
+  &__generate-ideas-button-container {
+    position: fixed;
+    bottom: 20px;
+    display: flex;
+    justify-content: center;
+    z-index: 1000; // Ensure it's above other components
+    width: auto;
+
+    @include respond-to(tablet) {
+      
+    }
+
+    // Styles for the button inside this container
+    .stages-button {
+      // Ensuring it follows the styles of the button defined in Button.scss
+      font-family: "Orbitron", sans-serif;
+      font-size: 15px;
+      background-color: $color-primary;
+      border: solid $color-secondary;
+      border-radius: 10px;
+      padding: 1.2rem 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: lighten($color-primary, 10%);
+        transform: scale(1.1);
+      }
+
+      &:disabled {
+        background-color: lighten($color-primary, 20%);
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  // Icon styling (added back)
+  &__icon {
+    font-size: 2rem;
+    color: $color-primary;
+    margin-right: 1rem;
+
+    // Adjustments for larger screens
+    @include respond-to(tablet) {
+      font-size: 2.5rem;
     }
   }
 }

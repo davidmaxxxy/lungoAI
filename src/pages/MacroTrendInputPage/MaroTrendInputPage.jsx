@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-
 import ImpactAssessmentPage from "../ImpactAssessmentPage/ImpactAssessmentPage";
+import InvestmentIdeasPage from "../InvestmentIdeasPage/InvestmentIdeasPage"; // Import the InvestmentIdeasPage component
 import axios from "axios";
 import "../MacroTrendInputPage/MacroTrendInputPage.scss";
 import Button from "../../components/Buttons/Button";
@@ -39,6 +39,11 @@ function MacroTrendInputPage() {
       setIsLoading(false);
     }
   };
+
+  const handleGenerateIdeasClick = () => {
+    setActiveStage(3);
+  };
+
   return (
     <div className="macro-trend-input-page">
       {/* Render the Stages */}
@@ -87,7 +92,8 @@ function MacroTrendInputPage() {
         ))}
       </div>
 
-      {!formSubmitted && (
+      {/* Render Content Based on Active Stage */}
+      {activeStage === 1 && (
         <form
           className="macro-trend-input-page__form"
           onSubmit={handleFormSubmit}
@@ -119,7 +125,21 @@ function MacroTrendInputPage() {
       )}
 
       {error && <div className="error-message"> {error}</div>}
-      {impactData && <ImpactAssessmentPage data={impactData} />}
+
+      {activeStage === 2 && impactData && (
+        <>
+          <ImpactAssessmentPage data={impactData} />
+          <div className="impact-assessment-page__generate-ideas-button-container">
+            <Button
+              text="Generate Investment Ideas"
+              className="stages-button" // Ensuring it uses the styles defined in Button.scss
+              onClick={handleGenerateIdeasClick}
+            />
+          </div>
+        </>
+      )}
+
+      {activeStage === 3 && <InvestmentIdeasPage impactData={impactData} />}
     </div>
   );
 }

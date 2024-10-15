@@ -28,6 +28,8 @@
       width: 100%;
       text-align: center;
       margin-top: 1rem;
+      font-size: 1.2rem;
+      color: $color-primary;
     }
 
     &--textarea {
@@ -132,15 +134,7 @@
   .error-message {
     color: $color-accent;
     margin-top: 1rem;
-  }
-
-  @keyframes spin {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
+    text-align: center;
   }
 
   // Tablet and larger screen styles

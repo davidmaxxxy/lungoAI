@@ -23,6 +23,8 @@
   width: 100%;
   text-align: center;
   margin-top: 1rem;
+  font-size: 1.2rem;
+  color: #c3f564;
 }
 .macro-trend-input-page__form--textarea {
   width: 100%;
@@ -116,14 +118,7 @@
 .macro-trend-input-page .error-message {
   color: #ffc857;
   margin-top: 1rem;
-}
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+  text-align: center;
 }
 @media (min-width: 768px) {
   .macro-trend-input-page {
