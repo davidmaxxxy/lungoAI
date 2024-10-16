@@ -1,8 +1,6 @@
 @import "../../styles/variables";
 @import "../../styles/mixins";
 
-// New darker color slightly lighter than the background color
-$color-dark: darken($color-background, 10%);
 
 .investment-ideas-page {
   display: flex;
@@ -18,13 +16,13 @@ $color-dark: darken($color-background, 10%);
   }
 
   .investment-ideas-table {
-    width: 90%;
+    width: 80%;
     overflow-x: auto;
     border-radius: 20px;
     box-shadow: 0px 4px 10px $color-primary;
 
     table {
-      width: 100%;
+      // width: 70%;
       border-collapse: collapse; // Ensure borders collapse for a cleaner look
 
       thead {
@@ -53,7 +51,7 @@ $color-dark: darken($color-background, 10%);
           }
 
           &:nth-child(odd) {
-            background-color: $color-dark; 
+            background-color: $color-background; 
           }
 
           td {
