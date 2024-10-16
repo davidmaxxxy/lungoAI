@@ -1,14 +1,10 @@
 import React, { useState } from "react";
-import ImpactAssessmentPage from "../ImpactAssessmentPage/ImpactAssessmentPage";
-import InvestmentIdeasPage from "../InvestmentIdeasPage/InvestmentIdeasPage"; // Import the InvestmentIdeasPage component
 import axios from "axios";
-import "../MacroTrendInputPage/MacroTrendInputPage.scss";
+import "./MacroTrendInputPage.scss";
 import Button from "../../components/Buttons/Button";
 
-function MacroTrendInputPage() {
-  const [activeStage, setActiveStage] = useState(1);
+function MacroTrendInputPage({ onNextStage }) {
   const [themeDescription, setThemeDescription] = useState("");
-  const [impactData, setImpactData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [error, setError] = useState("");
@@ -28,8 +24,7 @@ function MacroTrendInputPage() {
       );
 
       if (response.status === 200) {
-        setImpactData(response.data);
-        setActiveStage(2);
+        onNextStage(response.data);
       }
     } catch (error) {
       console.error("Error generating impact analysis:", error);
@@ -40,60 +35,9 @@ function MacroTrendInputPage() {
     }
   };
 
-  const handleGenerateIdeasClick = () => {
-    setActiveStage(3);
-  };
-
   return (
     <div className="macro-trend-input-page">
-      {/* Render the Stages */}
-      <div className="macro-trend-input-page__stages">
-        {[
-          {
-            number: 1,
-            text: "Describe Macro Trends & Assess Asset Class Impact",
-          },
-          {
-            number: 2,
-            text: "Generate Investment Ideas Based on Provided Theme",
-          },
-          {
-            number: 3,
-            text: "Analyze Key Metrics & Choose Assets for Your Portfolio",
-          },
-        ].map((stage, index) => (
-          <div
-            key={index}
-            className={`macro-trend-input-page__stage ${
-              activeStage === stage.number
-                ? "macro-trend-input-page__stage--active"
-                : ""
-            }`}
-          >
-            <span
-              className={`macro-trend-input-page__stage-number ${
-                activeStage === stage.number
-                  ? "macro-trend-input-page__stage-number--active"
-                  : ""
-              }`}
-            >
-              {stage.number}
-            </span>
-            <span
-              className={`macro-trend-input-page__stage-text ${
-                activeStage === stage.number
-                  ? "macro-trend-input-page__stage-text--active"
-                  : ""
-              }`}
-            >
-              {stage.text}
-            </span>
-          </div>
-        ))}
-      </div>
-
-      {/* Render Content Based on Active Stage */}
-      {activeStage === 1 && (
+      {!formSubmitted && (
         <form
           className="macro-trend-input-page__form"
           onSubmit={handleFormSubmit}
@@ -105,7 +49,7 @@ function MacroTrendInputPage() {
             className="macro-trend-input-page__form--textarea"
             value={themeDescription}
             onChange={(e) => setThemeDescription(e.target.value)}
-            placeholder="Provide a short theme description... E.g. Inflation has been raising across the world"
+            placeholder="Provide a short theme description... E.g. Inflation has been rising across the world"
             rows={4}
             required
           />
@@ -120,26 +64,11 @@ function MacroTrendInputPage() {
       {isLoading && (
         <div className="macro-trend-input-page__loading">
           <div className="spinner"></div>
-          <p>Generating impact assessment...</p>
+          <p>Generating impact assessment... This might take up to 1 min.</p>
         </div>
       )}
 
       {error && <div className="error-message"> {error}</div>}
-
-      {activeStage === 2 && impactData && (
-        <>
-          <ImpactAssessmentPage data={impactData} />
-          <div className="impact-assessment-page__generate-ideas-button-container">
-            <Button
-              text="Generate Investment Ideas"
-              className="stages-button" // Ensuring it uses the styles defined in Button.scss
-              onClick={handleGenerateIdeasClick}
-            />
-          </div>
-        </>
-      )}
-
-      {activeStage === 3 && <InvestmentIdeasPage impactData={impactData} />}
     </div>
   );
 }

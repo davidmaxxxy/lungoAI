@@ -35,6 +35,7 @@
         font-size: 2.5rem;
       }
     }
+
     p {
       padding: 0.5rem 1rem;
       @include respond-to(tablet) {
@@ -63,20 +64,41 @@
 
     h1 {
       color: $color-primary;
-      margin-bottom: 1rem;
+      margin-bottom: 3rem;
     }
 
-    &__triangle {
-      width: 0;
-      height: 0;
-      border-left: 15px solid transparent;
-      border-right: 15px solid transparent;
-      border-top: 20px solid $color-primary;
+    // Replace triangle with a styled button
+    &__button {
+      font-family: "Orbitron", sans-serif; // Assuming you are using this font in other buttons
+      font-size: 1rem;
+      background-color: $color-primary;
+      color: $color-background;
+      border: solid $color-secondary 2px;
+      border-radius: 10px;
+      padding: 1rem 2rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
       animation: bounce 2s infinite;
+
+      &:hover {
+        background-color: lighten($color-primary, 10%);
+        transform: scale(1.1);
+      }
+
+      &:disabled {
+        background-color: lighten($color-primary, 20%);
+        cursor: not-allowed;
+      }
+
+      @include respond-to(tablet) {
+        font-size: 1.2rem;
+        padding: 1rem 3rem;
+      }
     }
   }
 }
 
+// Keyframes for the bounce animation
 @keyframes bounce {
   0%,
   20%,

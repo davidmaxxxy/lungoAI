@@ -1,0 +1,65 @@
+.workflow-management-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  margin-top: 12rem;
+}
+.workflow-management-page__stages {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  width: 100%;
+}
+@media (min-width: 768px) {
+  .workflow-management-page__stages {
+    flex-direction: row;
+    justify-content: space-between;
+    width: 80%;
+    gap: 2rem;
+  }
+}
+.workflow-management-page__stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.5rem 2rem;
+  width: 75%;
+  border-radius: 10px;
+  border: solid #c3f564;
+  transition: background-color 0.3s ease;
+}
+.workflow-management-page__stage--active {
+  background-color: #4b7f52;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.workflow-management-page__stage-number {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #c3f564;
+}
+.workflow-management-page__stage-number--active {
+  color: #e5e5e5;
+}
+@media (min-width: 768px) {
+  .workflow-management-page__stage-number {
+    font-size: 2rem;
+  }
+}
+.workflow-management-page__stage-text {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: #e5e5e5;
+  text-align: center;
+}
+.workflow-management-page__stage-text--active {
+  color: #e5e5e5;
+  font-weight: bold;
+}
+@media (min-width: 768px) {
+  .workflow-management-page__stage-text {
+    font-size: 1rem;
+  }
+}/*# sourceMappingURL=WorkflowManagementPage.css.map */

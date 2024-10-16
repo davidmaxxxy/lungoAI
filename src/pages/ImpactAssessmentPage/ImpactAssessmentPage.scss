@@ -38,17 +38,21 @@
     align-items: center;
     margin-bottom: 1rem;
 
-    &-icon {
-      font-size: 2rem;
-      color: $color-primary;
-      margin-right: 1rem;
-    }
-
     h3 {
       font-size: 1.5rem;
       color: $color-primary;
       margin: 0;
       text-align: center;
+    }
+  }
+
+  &__icon {
+    font-size: 2rem;
+    color: $color-primary;
+    margin-right: 1rem;
+
+    @include respond-to(tablet) {
+      font-size: 2.5rem;
     }
   }
 
@@ -73,35 +77,36 @@
       margin-bottom: 1rem;
 
       h4 {
-        font-size: 1.2rem;
-        color: $color-primary;
-        margin-bottom: 0.5rem;
+        text-align: center;
+        @include respond-to(tablet) {
+          font-size: 1.2rem;
+          color: $color-primary;
+          margin-bottom: 0.5rem;
+          text-align: left;
+        }
       }
 
       p {
-        font-size: 1rem;
-        color: $color-text;
-        margin: 0;
+        text-align: center;
+        @include respond-to(tablet) {
+          font-size: 1rem;
+          color: $color-text;
+          margin: 0;
+          text-align: left;
+        }
       }
     }
   }
 
-  // Generate Ideas Button Container
   &__generate-ideas-button-container {
     position: fixed;
     bottom: 20px;
     display: flex;
     justify-content: center;
-    z-index: 1000; // Ensure it's above other components
+    z-index: 1000;
     width: auto;
 
-    @include respond-to(tablet) {
-      
-    }
-
-    // Styles for the button inside this container
     .stages-button {
-      // Ensuring it follows the styles of the button defined in Button.scss
       font-family: "Orbitron", sans-serif;
       font-size: 15px;
       background-color: $color-primary;
@@ -115,23 +120,6 @@
         background-color: lighten($color-primary, 10%);
         transform: scale(1.1);
       }
-
-      &:disabled {
-        background-color: lighten($color-primary, 20%);
-        cursor: not-allowed;
-      }
-    }
-  }
-
-  // Icon styling (added back)
-  &__icon {
-    font-size: 2rem;
-    color: $color-primary;
-    margin-right: 1rem;
-
-    // Adjustments for larger screens
-    @include respond-to(tablet) {
-      font-size: 2.5rem;
     }
   }
 }

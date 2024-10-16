@@ -1,8 +1,7 @@
-import axios from "axios";
-import React, { useState } from "react";
+import React from "react";
+import Button from "../../components/Buttons/Button";
 import "./ImpactAssessmentPage.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Button from "../../components/Buttons/Button";
 import {
   faChartLine,
   faFileContract,
@@ -12,7 +11,7 @@ import {
   faBitcoinSign,
 } from "@fortawesome/free-solid-svg-icons";
 
-function ImpactAssessmentPage({ data }) {
+function ImpactAssessmentPage({ data, onNextStage }) {
   if (!data || !data.asset_classes) {
     return null;
   }
@@ -42,7 +41,6 @@ function ImpactAssessmentPage({ data }) {
           <div className="impact-assessment-page__impact-level">
             <h4>Impact Level: {assetClass.impactLevel}</h4>
           </div>
-
           <div className="impact-assessment-page__subcategories">
             {Object.entries(assetClass.subcategories).map(
               ([subcategory, description], subIndex) => (
@@ -58,6 +56,13 @@ function ImpactAssessmentPage({ data }) {
           </div>
         </div>
       ))}
+      <div className="impact-assessment-page__generate-ideas-button-container">
+        <Button
+          text="Generate Investment Ideas"
+          className="stages-button"
+          onClick={onNextStage}
+        />
+      </div>
     </div>
   );
 }

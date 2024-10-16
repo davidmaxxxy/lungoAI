@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import "../InvestmentIdeasPage/InvestmentIdeasPage.scss";
+import "./InvestmentIdeasPage.scss";
 
-function InvestmentIdeasPage() {
+function InvestmentIdeasPage({ impactData }) {
   const [investmentIdeas, setInvestmentIdeas] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
@@ -169,6 +169,54 @@ function InvestmentIdeasPage() {
         evRevenue: "3.8",
         evEbitda: "10.5",
       },
+      {
+        stockTicker: "DIS",
+        stockName: "The Walt Disney Company",
+        stockPrice: "$185",
+        position: "Long",
+        oneMonthChange: "+3.2%",
+        threeMonthChange: "+9%",
+        oneYearChange: "+13%",
+        marketCap: "$330B",
+        peRatio: "25.1",
+        pegRatio: "1.6",
+        priceToSales: "6.1",
+        priceToBook: "2.8",
+        evRevenue: "5.0",
+        evEbitda: "17.5",
+      },
+      {
+        stockTicker: "V",
+        stockName: "Visa Inc.",
+        stockPrice: "$210",
+        position: "Long",
+        oneMonthChange: "+1.8%",
+        threeMonthChange: "+5%",
+        oneYearChange: "+15%",
+        marketCap: "$500B",
+        peRatio: "32.4",
+        pegRatio: "2.0",
+        priceToSales: "13.1",
+        priceToBook: "10.4",
+        evRevenue: "11.2",
+        evEbitda: "29.9",
+      },
+      {
+        stockTicker: "MA",
+        stockName: "Mastercard Inc.",
+        stockPrice: "$375",
+        position: "Short",
+        oneMonthChange: "-2.0%",
+        threeMonthChange: "+7%",
+        oneYearChange: "+14%",
+        marketCap: "$370B",
+        peRatio: "40.2",
+        pegRatio: "1.9",
+        priceToSales: "15.7",
+        priceToBook: "20.6",
+        evRevenue: "14.9",
+        evEbitda: "35.4",
+      },
     ];
 
     // Simulate loading delay
@@ -211,8 +259,9 @@ function InvestmentIdeasPage() {
                 <th>Stock Ticker</th>
                 <th>Stock Name</th>
                 <th>Stock Price</th>
-                <th>Position (Long/Short)</th>
-                <th>Actions</th>
+                <th>Position</th>
+                <th>Add to Portfolio</th>
+                <th>Replace Idea</th>
                 <th>1M Price Change</th>
                 <th>3M Price Change</th>
                 <th>1Y Price Change</th>
@@ -238,13 +287,15 @@ function InvestmentIdeasPage() {
                       className="add-button"
                       onClick={() => handleAddToPortfolio(idea)}
                     >
-                      + Add to Portfolio
+                      +
                     </button>
+                  </td>
+                  <td>
                     <button
                       className="replace-button"
                       onClick={() => handleReplaceIdea(index)}
                     >
-                       : Replace
+                      :
                     </button>
                   </td>
                   <td>{idea.oneMonthChange}</td>

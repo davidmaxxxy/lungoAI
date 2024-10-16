@@ -1,0 +1,72 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.workflow-management-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  margin-top: 12rem;
+  // Stage Navigation Styles
+  &__stages {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    width: 100%;
+
+    @include respond-to(tablet) {
+      flex-direction: row;
+      justify-content: space-between;
+      width: 80%;
+      gap: 2rem;
+    }
+  }
+
+  &__stage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.5rem 2rem;
+    width: 75%;
+    border-radius: 10px;
+    border: solid $color-primary;
+    transition: background-color 0.3s ease;
+
+    &--active {
+      background-color: $color-secondary;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+  }
+
+  &__stage-number {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: $color-primary;
+
+    &--active {
+      color: $color-text;
+    }
+
+    @include respond-to(tablet) {
+      font-size: 2rem;
+    }
+  }
+
+  &__stage-text {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: $color-text;
+    text-align: center;
+
+    &--active {
+      color: $color-text;
+      font-weight: bold;
+    }
+
+    @include respond-to(tablet) {
+      font-size: 1rem;
+    }
+  }
+}

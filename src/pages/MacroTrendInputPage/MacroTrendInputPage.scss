@@ -1,22 +1,20 @@
 @import "../../styles/variables";
 @import "../../styles/mixins";
 
+// Main Container
 .macro-trend-input-page {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 1rem;
+  width: 80%;
 
-  // Mobile-first styles
-  &__stages {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 1rem;
-    width: 100%;
+  @include respond-to(tablet) {
+    width: 60%;
+    padding: 2rem;
   }
 
+  // Form Section
   &__form {
     display: flex;
     flex-direction: column;
@@ -30,85 +28,40 @@
       margin-top: 1rem;
       font-size: 1.2rem;
       color: $color-primary;
+
+      @include respond-to(tablet) {
+        font-size: 1.5rem;
+      }
     }
 
     &--textarea {
       width: 100%;
       padding: 1rem;
+      height: 15rem; // Set a fixed height to ensure consistency
       background-color: lighten($color-background, 5%);
       font-size: 1rem;
       border: 1px solid $color-secondary;
       border-radius: 5px;
       resize: vertical;
       color: $color-text;
+      line-height: 1.5; // Ensure a good line height for readability
+      display: flex;
+      align-items: center; // Vertically center text
 
       @include respond-to(tablet) {
-        padding: 5rem 1rem;
+        padding: 1.5rem;
+        font-size: 1.2rem;
       }
 
       &::placeholder {
         color: lighten($color-text, 40%);
         opacity: 0.7;
+        line-height: normal; // Ensure placeholder text aligns like regular text
       }
     }
   }
 
-  &__button {
-    padding: 0.8rem 1.5rem;
-    background-color: $color-primary;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-
-    &:hover {
-      background-color: darken($color-primary, 10%);
-    }
-
-    &:disabled {
-      background-color: lighten($color-primary, 20%);
-      cursor: not-allowed;
-    }
-  }
-
-  &__stage {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 0.5rem;
-    border-radius: 10px;
-    border: solid $color-primary;
-    transition: background-color 0.3s ease;
-
-    &--active {
-      background-color: $color-secondary;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
-  }
-
-  &__stage-number {
-    font-size: 1.25rem;
-    font-weight: bold;
-    color: $color-primary;
-
-    &--active {
-      color: $color-text;
-    }
-  }
-
-  &__stage-text {
-    margin-top: 0.5rem;
-    font-size: 0.9rem;
-    color: $color-text;
-    text-align: center;
-
-    &--active {
-      color: $color-text;
-      font-weight: bold;
-    }
-  }
-
+  // Loading Spinner Section
   &__loading {
     display: flex;
     flex-direction: column;
@@ -128,36 +81,31 @@
       margin-top: 1rem;
       color: $color-primary;
       font-weight: bold;
+
+      @include respond-to(tablet) {
+        font-size: 1.2rem;
+      }
     }
   }
 
-  .error-message {
+  // Error Message Styling
+  &__error-message {
     color: $color-accent;
     margin-top: 1rem;
     text-align: center;
+
+    @include respond-to(tablet) {
+      font-size: 1.1rem;
+    }
   }
+}
 
-  // Tablet and larger screen styles
-  @include respond-to(tablet) {
-    padding: 2rem;
-
-    &__stages {
-      flex-direction: row;
-      justify-content: space-between;
-      width: 80%;
-      gap: 2rem;
-    }
-
-    &__form {
-      width: 60%;
-    }
-
-    &__stage-number {
-      font-size: 2rem;
-    }
-
-    &__stage-text {
-      font-size: 1rem;
-    }
+// Spinner Animation Keyframes
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }

@@ -1,7 +1,15 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "../Hero/Hero.scss";
 
 function Hero() {
+  const navigate = useNavigate();
+
+  // Handle redirection when the button is clicked
+  const handleCTAButtonClick = () => {
+    navigate("/stages"); // Navigate to the workflow management page
+  };
+
   return (
     <div className="hero">
       <div className="hero__header">
@@ -21,8 +29,14 @@ function Hero() {
           </p>
         </div>
         <div className="hero__cta-container">
-          <h1>TRY IT YOURSELF</h1>
-          <span className="hero__cta-container__triangle"></span>
+          {/* <h1>TRY IT YOURSELF</h1> */}
+          {/* Use button element for the CTA button to navigate */}
+          <button
+            className="hero__cta-container__button"
+            onClick={handleCTAButtonClick}
+          >
+            Try it Yourself
+          </button>
         </div>
       </div>
     </div>

@@ -74,15 +74,33 @@
 }
 .hero__cta-container h1 {
   color: #c3f564;
-  margin-bottom: 1rem;
+  margin-bottom: 3rem;
 }
-.hero__cta-container__triangle {
-  width: 0;
-  height: 0;
-  border-left: 15px solid transparent;
-  border-right: 15px solid transparent;
-  border-top: 20px solid #c3f564;
+.hero__cta-container__button {
+  font-family: "Orbitron", sans-serif;
+  font-size: 1rem;
+  background-color: #c3f564;
+  color: #121212;
+  border: solid #4b7f52 2px;
+  border-radius: 10px;
+  padding: 1rem 2rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
   animation: bounce 2s infinite;
+}
+.hero__cta-container__button:hover {
+  background-color: #d6f894;
+  transform: scale(1.1);
+}
+.hero__cta-container__button:disabled {
+  background-color: #e8fbc4;
+  cursor: not-allowed;
+}
+@media (min-width: 768px) {
+  .hero__cta-container__button {
+    font-size: 1.2rem;
+    padding: 1rem 3rem;
+  }
 }
 
 @keyframes bounce {

@@ -34,16 +34,21 @@
   align-items: center;
   margin-bottom: 1rem;
 }
-.impact-assessment-page__asset-header-icon {
-  font-size: 2rem;
-  color: #c3f564;
-  margin-right: 1rem;
-}
 .impact-assessment-page__asset-header h3 {
   font-size: 1.5rem;
   color: #c3f564;
   margin: 0;
   text-align: center;
+}
+.impact-assessment-page__icon {
+  font-size: 2rem;
+  color: #c3f564;
+  margin-right: 1rem;
+}
+@media (min-width: 768px) {
+  .impact-assessment-page__icon {
+    font-size: 2.5rem;
+  }
 }
 .impact-assessment-page__impact-level {
   margin-top: 0.5rem;
@@ -64,14 +69,26 @@
   margin-bottom: 1rem;
 }
 .impact-assessment-page__subcategories-subcategory h4 {
-  font-size: 1.2rem;
-  color: #c3f564;
-  margin-bottom: 0.5rem;
+  text-align: center;
+}
+@media (min-width: 768px) {
+  .impact-assessment-page__subcategories-subcategory h4 {
+    font-size: 1.2rem;
+    color: #c3f564;
+    margin-bottom: 0.5rem;
+    text-align: left;
+  }
 }
 .impact-assessment-page__subcategories-subcategory p {
-  font-size: 1rem;
-  color: #e5e5e5;
-  margin: 0;
+  text-align: center;
+}
+@media (min-width: 768px) {
+  .impact-assessment-page__subcategories-subcategory p {
+    font-size: 1rem;
+    color: #e5e5e5;
+    margin: 0;
+    text-align: left;
+  }
 }
 .impact-assessment-page__generate-ideas-button-container {
   position: fixed;
@@ -94,18 +111,4 @@
 .impact-assessment-page__generate-ideas-button-container .stages-button:hover {
   background-color: #d6f894;
   transform: scale(1.1);
-}
-.impact-assessment-page__generate-ideas-button-container .stages-button:disabled {
-  background-color: #e8fbc4;
-  cursor: not-allowed;
-}
-.impact-assessment-page__icon {
-  font-size: 2rem;
-  color: #c3f564;
-  margin-right: 1rem;
-}
-@media (min-width: 768px) {
-  .impact-assessment-page__icon {
-    font-size: 2.5rem;
-  }
 }/*# sourceMappingURL=ImpactAssessmentPage.css.map */
