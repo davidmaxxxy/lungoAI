@@ -1,0 +1,112 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.portfolio-page {
+  margin-top: 10rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  width: 100%;
+  box-sizing: border-box;
+
+  h2 {
+    color: $color-primary;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+
+  .portfolio-table {
+    width: 80%;
+    overflow-x: auto;
+    border-radius: 20px;
+    box-shadow: 0px 4px 10px $color-primary;
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+
+      thead {
+        tr {
+          background-color: $color-secondary;
+          color: white;
+
+          th {
+            padding: 1rem;
+            text-align: center;
+            font-size: 0.9rem;
+            border: 1px solid $color-grids;
+
+            @include respond-to(tablet) {
+              font-size: 1rem;
+            }
+          }
+        }
+      }
+
+      tbody {
+        tr {
+          &:nth-child(even) {
+            background-color: lighten($color-background, 10%);
+          }
+
+          &:nth-child(odd) {
+            background-color: $color-background;
+          }
+
+          td {
+            padding: 1rem;
+            text-align: left;
+            font-size: 0.9rem;
+            border: 1px solid $color-grids;
+
+            @include respond-to(tablet) {
+              font-size: 1rem;
+              text-align: center;
+            }
+
+            .theme-container {
+              color: $color-background;
+              background-color: $color-primary;
+              padding: 0.5rem;
+              border-radius: 5px;
+              border: solid $color-secondary;
+              margin-bottom: 0.5rem;
+              display: inline-block;
+              font-size: small;
+
+              &:not(:last-child) {
+                margin-right: 5px; // Space between theme containers
+              }
+            }
+
+            .remove-button {
+              background-color: $color-negative;
+              border: solid $color-negative 2px;
+              border-radius: 10px;
+              color: white;
+              padding: 0.5rem 1.5rem;
+              cursor: pointer;
+              transition: background-color 0.3s ease;
+
+              &:hover {
+                background-color: darken($color-negative, 10%);
+                transform: scale(1.1);
+              }
+
+              @include respond-to(tablet) {
+                font-size: 14px;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .empty-portfolio-message {
+      color: $color-accent;
+      margin-top: 1rem;
+      text-align: center;
+    }
+  }
+}

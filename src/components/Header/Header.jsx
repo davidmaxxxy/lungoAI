@@ -1,12 +1,18 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../Header/Header.scss";
 import { FaSun, FaBars, FaTimes } from "react-icons/fa";
 
 const Header = () => {
+  const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
+  };
+
+  const handlePortfolioNavigation = () => {
+    navigate("/portfolio"); // Fixed the navigation path
   };
 
   return (
@@ -26,7 +32,10 @@ const Header = () => {
           <div className="header__button header__button--light-mode">
             <FaSun className="header__icon" />
           </div>
-          <div className="header__button header__button--portfolio">
+          <div
+            className="header__button header__button--portfolio"
+            onClick={handlePortfolioNavigation} // Fixed navigation to Portfolio page
+          >
             Portfolio
           </div>
           <div className="header__button header__button--signup">Sign Up</div>
