@@ -4,6 +4,17 @@ import Loading from "../../components/Loading/Loading";
 import axios from "axios";
 import Button from "../../components/Buttons/Button";
 
+const formatPrice = (price, currency = "USD") => {
+  if (!price) return "N/A"; // Handle missing price data
+  const formattedPrice = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency,
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(price);
+  return formattedPrice;
+};
+
 function InvestmentIdeasPage({ impactData }) {
   const [investmentIdeas, setInvestmentIdeas] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -70,11 +81,12 @@ function InvestmentIdeasPage({ impactData }) {
             <thead>
               <tr>
                 <th>#</th>
-                <th>Stock Ticker</th>
-                <th>Stock Name</th>
-                <th>Stock Price</th>
+                <th>Ticker</th>
+                <th>Name</th>
+                <th>Asset Type</th>
+                <th>Price</th>
                 <th>Position</th>
-                <th>Reason</th> {/* New column for Reason */}
+                <th>Reason</th>
                 <th>Add to Portfolio</th>
               </tr>
             </thead>
@@ -82,11 +94,17 @@ function InvestmentIdeasPage({ impactData }) {
               {investmentIdeas.map((idea, index) => (
                 <tr key={index}>
                   <td>{index + 1}</td>
-                  <td>{idea.ticker}</td>
-                  <td>{idea.name}</td>
-                  <td>{idea.currentPrice}</td>
+                  <td>
+                    {idea.ticker}
+                  </td>
+                  <td>
+                    {idea.name}
+                  </td>
+                  <td>{idea.assetType || determineAssetType(idea)}</td>{" "}
+                  {/* Display correct asset type */}
+                  <td>{formatPrice(idea.currentPrice, idea.currency)}</td>
                   <td>{idea.position}</td>
-                  <td>{idea.reason}</td> {/* Render the reason */}
+                  <td>{idea.reason}</td>
                   <td>
                     <Button
                       text="+"
@@ -102,6 +120,18 @@ function InvestmentIdeasPage({ impactData }) {
       )}
     </div>
   );
+}
+
+// Helper function to determine the asset type based on the data
+function determineAssetType(idea) {
+  if (idea.ticker && idea.ticker.match(/^[A-Z]+$/)) {
+    return "Stock";
+  } else if (idea.ticker && idea.ticker.match(/^[A-Z]+\/[A-Z]+$/)) {
+    return "Currency Pair";
+  } else if (idea.name && idea.name.toLowerCase().includes("crypto")) {
+    return "Cryptocurrency";
+  }
+  return "Commodity"; // Default fallback
 }
 
 export default InvestmentIdeasPage;

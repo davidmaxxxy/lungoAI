@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "../Hero/Hero.scss";
+import Button from "../Buttons/Button";
 
 function Hero() {
   const navigate = useNavigate();

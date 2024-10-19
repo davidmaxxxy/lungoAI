@@ -73,9 +73,9 @@
       font-size: 1rem;
       background-color: $color-primary;
       color: $color-background;
-      border: solid $color-secondary 2px;
+      border: solid $color-secondary;
       border-radius: 10px;
-      padding: 1rem 2rem;
+      padding: 1.2rem 1rem;
       cursor: pointer;
       transition: background-color 0.3s ease, transform 0.3s ease;
       animation: bounce 2s infinite;
