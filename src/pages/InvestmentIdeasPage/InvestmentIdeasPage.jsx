@@ -74,6 +74,7 @@ function InvestmentIdeasPage({ impactData }) {
                 <th>Stock Name</th>
                 <th>Stock Price</th>
                 <th>Position</th>
+                <th>Reason</th> {/* New column for Reason */}
                 <th>Add to Portfolio</th>
               </tr>
             </thead>
@@ -85,6 +86,7 @@ function InvestmentIdeasPage({ impactData }) {
                   <td>{idea.name}</td>
                   <td>{idea.currentPrice}</td>
                   <td>{idea.position}</td>
+                  <td>{idea.reason}</td> {/* Render the reason */}
                   <td>
                     <Button
                       text="+"
