@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./MacroTrendInputPage.scss";
 import Button from "../../components/Buttons/Button";
+import Loading from "../../components/Loading/Loading";
 
 function MacroTrendInputPage({ onNextStage }) {
   const [themeDescription, setThemeDescription] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [error, setError] = useState("");
+  const userId = 1; // Assuming user ID is hardcoded here for now. You can replace it with dynamic user ID from your app's state/context.
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
@@ -15,16 +17,23 @@ function MacroTrendInputPage({ onNextStage }) {
     setFormSubmitted(true);
     setError("");
 
+    // Define the payload to match backend requirements
+    const payload = {
+      data: themeDescription,
+      user_id: userId,
+    };
+
     try {
       const response = await axios.post(
-        "http://localhost:5001/api/generate-impact-analysis",
-        {
-          data: themeDescription,
-        }
+        "http://localhost:5001/api/impact/generate-impact-analysis",
+        payload
       );
 
       if (response.status === 200) {
-        onNextStage(response.data);
+        onNextStage({
+          ...response.data,
+          id: response.data.impact_assessment_id,
+        });
       }
     } catch (error) {
       console.error("Error generating impact analysis:", error);
@@ -49,7 +58,7 @@ function MacroTrendInputPage({ onNextStage }) {
             className="macro-trend-input-page__form--textarea"
             value={themeDescription}
             onChange={(e) => setThemeDescription(e.target.value)}
-            placeholder="Provide a short theme description... E.g. Inflation has been rising across the world"
+            placeholder="Provide a short theme description... E.g. US Elections - Trump vs Harris"
             rows={4}
             required
           />
@@ -62,13 +71,12 @@ function MacroTrendInputPage({ onNextStage }) {
       )}
 
       {isLoading && (
-        <div className="macro-trend-input-page__loading">
-          <div className="spinner"></div>
-          <p>Generating impact assessment... This might take up to 1 min.</p>
-        </div>
+        <Loading message="Generating impact assessment... This might take up to 1 min." />
       )}
 
-      {error && <div className="error-message"> {error}</div>}
+      {error && (
+        <div className="macro-trend-input-page__error-message">{error}</div>
+      )}
     </div>
   );
 }

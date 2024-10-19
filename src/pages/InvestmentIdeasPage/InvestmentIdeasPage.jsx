@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./InvestmentIdeasPage.scss";
+import Loading from "../../components/Loading/Loading";
+import axios from "axios";
+import Button from "../../components/Buttons/Button";
 
 function InvestmentIdeasPage({ impactData }) {
   const [investmentIdeas, setInvestmentIdeas] = useState([]);
@@ -7,245 +10,56 @@ function InvestmentIdeasPage({ impactData }) {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    // Mock data for testing purposes
-    const mockInvestmentIdeas = [
-      {
-        stockTicker: "AAPL",
-        stockName: "Apple Inc.",
-        stockPrice: "$150",
-        position: "Long",
-        oneMonthChange: "+2.5%",
-        threeMonthChange: "+10%",
-        oneYearChange: "+20%",
-        marketCap: "$2.5T",
-        peRatio: "28.5",
-        pegRatio: "1.5",
-        priceToSales: "6.5",
-        priceToBook: "8.3",
-        evRevenue: "7.0",
-        evEbitda: "18.3",
-      },
-      {
-        stockTicker: "GOOGL",
-        stockName: "Alphabet Inc.",
-        stockPrice: "$2800",
-        position: "Short",
-        oneMonthChange: "-1.5%",
-        threeMonthChange: "+5%",
-        oneYearChange: "+15%",
-        marketCap: "$1.8T",
-        peRatio: "30.2",
-        pegRatio: "1.8",
-        priceToSales: "8.2",
-        priceToBook: "5.7",
-        evRevenue: "8.5",
-        evEbitda: "20.4",
-      },
-      {
-        stockTicker: "AMZN",
-        stockName: "Amazon.com Inc.",
-        stockPrice: "$3450",
-        position: "Long",
-        oneMonthChange: "+3.1%",
-        threeMonthChange: "+12%",
-        oneYearChange: "+18%",
-        marketCap: "$1.7T",
-        peRatio: "60.1",
-        pegRatio: "2.0",
-        priceToSales: "4.2",
-        priceToBook: "15.3",
-        evRevenue: "3.9",
-        evEbitda: "21.1",
-      },
-      {
-        stockTicker: "MSFT",
-        stockName: "Microsoft Corporation",
-        stockPrice: "$299",
-        position: "Long",
-        oneMonthChange: "+4.5%",
-        threeMonthChange: "+8%",
-        oneYearChange: "+22%",
-        marketCap: "$2.4T",
-        peRatio: "35.6",
-        pegRatio: "2.3",
-        priceToSales: "10.5",
-        priceToBook: "14.7",
-        evRevenue: "9.4",
-        evEbitda: "24.2",
-      },
-      {
-        stockTicker: "TSLA",
-        stockName: "Tesla Inc.",
-        stockPrice: "$1100",
-        position: "Short",
-        oneMonthChange: "-3.4%",
-        threeMonthChange: "+20%",
-        oneYearChange: "+35%",
-        marketCap: "$1.0T",
-        peRatio: "300.4",
-        pegRatio: "1.7",
-        priceToSales: "20.2",
-        priceToBook: "35.3",
-        evRevenue: "19.2",
-        evEbitda: "38.7",
-      },
-      {
-        stockTicker: "FB",
-        stockName: "Meta Platforms Inc.",
-        stockPrice: "$340",
-        position: "Long",
-        oneMonthChange: "+2.1%",
-        threeMonthChange: "+7%",
-        oneYearChange: "+12%",
-        marketCap: "$950B",
-        peRatio: "23.9",
-        pegRatio: "1.4",
-        priceToSales: "7.8",
-        priceToBook: "6.3",
-        evRevenue: "7.5",
-        evEbitda: "18.0",
-      },
-      {
-        stockTicker: "NFLX",
-        stockName: "Netflix Inc.",
-        stockPrice: "$590",
-        position: "Long",
-        oneMonthChange: "+1.8%",
-        threeMonthChange: "+6%",
-        oneYearChange: "+10%",
-        marketCap: "$270B",
-        peRatio: "55.8",
-        pegRatio: "2.1",
-        priceToSales: "9.2",
-        priceToBook: "18.6",
-        evRevenue: "8.9",
-        evEbitda: "25.7",
-      },
-      {
-        stockTicker: "NVDA",
-        stockName: "NVIDIA Corporation",
-        stockPrice: "$220",
-        position: "Long",
-        oneMonthChange: "+5.5%",
-        threeMonthChange: "+18%",
-        oneYearChange: "+45%",
-        marketCap: "$550B",
-        peRatio: "70.3",
-        pegRatio: "2.5",
-        priceToSales: "20.4",
-        priceToBook: "19.3",
-        evRevenue: "18.9",
-        evEbitda: "40.0",
-      },
-      {
-        stockTicker: "BABA",
-        stockName: "Alibaba Group",
-        stockPrice: "$150",
-        position: "Short",
-        oneMonthChange: "-4.2%",
-        threeMonthChange: "-8%",
-        oneYearChange: "-20%",
-        marketCap: "$400B",
-        peRatio: "19.4",
-        pegRatio: "1.1",
-        priceToSales: "5.5",
-        priceToBook: "3.8",
-        evRevenue: "4.2",
-        evEbitda: "12.0",
-      },
-      {
-        stockTicker: "JPM",
-        stockName: "JPMorgan Chase & Co.",
-        stockPrice: "$160",
-        position: "Long",
-        oneMonthChange: "+2.7%",
-        threeMonthChange: "+4%",
-        oneYearChange: "+8%",
-        marketCap: "$490B",
-        peRatio: "12.5",
-        pegRatio: "1.3",
-        priceToSales: "4.1",
-        priceToBook: "1.9",
-        evRevenue: "3.8",
-        evEbitda: "10.5",
-      },
-      {
-        stockTicker: "DIS",
-        stockName: "The Walt Disney Company",
-        stockPrice: "$185",
-        position: "Long",
-        oneMonthChange: "+3.2%",
-        threeMonthChange: "+9%",
-        oneYearChange: "+13%",
-        marketCap: "$330B",
-        peRatio: "25.1",
-        pegRatio: "1.6",
-        priceToSales: "6.1",
-        priceToBook: "2.8",
-        evRevenue: "5.0",
-        evEbitda: "17.5",
-      },
-      {
-        stockTicker: "V",
-        stockName: "Visa Inc.",
-        stockPrice: "$210",
-        position: "Long",
-        oneMonthChange: "+1.8%",
-        threeMonthChange: "+5%",
-        oneYearChange: "+15%",
-        marketCap: "$500B",
-        peRatio: "32.4",
-        pegRatio: "2.0",
-        priceToSales: "13.1",
-        priceToBook: "10.4",
-        evRevenue: "11.2",
-        evEbitda: "29.9",
-      },
-      {
-        stockTicker: "MA",
-        stockName: "Mastercard Inc.",
-        stockPrice: "$375",
-        position: "Short",
-        oneMonthChange: "-2.0%",
-        threeMonthChange: "+7%",
-        oneYearChange: "+14%",
-        marketCap: "$370B",
-        peRatio: "40.2",
-        pegRatio: "1.9",
-        priceToSales: "15.7",
-        priceToBook: "20.6",
-        evRevenue: "14.9",
-        evEbitda: "35.4",
-      },
-    ];
-
-    // Simulate loading delay
-    setTimeout(() => {
-      setInvestmentIdeas(mockInvestmentIdeas);
+    // Directly use the passed `investmentIdeas` if available
+    if (impactData && impactData.investmentIdeas) {
+      console.log(
+        "Using provided investment ideas:",
+        impactData.investmentIdeas
+      );
+      setInvestmentIdeas(impactData.investmentIdeas);
       setIsLoading(false);
-    }, 1000); // Simulate a 1-second delay
-  }, []);
+    } else if (impactData && impactData.id) {
+      console.log(
+        "Fetching investment ideas using impact assessment ID:",
+        impactData.id
+      );
+      const fetchInvestmentIdeas = async () => {
+        setIsLoading(true);
+        try {
+          const response = await axios.get(
+            `http://localhost:5001/api/ideas/${impactData.id}`
+          );
+          if (response.status === 200) {
+            setInvestmentIdeas(response.data.investmentIdeas);
+          } else {
+            console.error(
+              "Failed to fetch investment ideas. Status code:",
+              response.status
+            );
+            setError("Failed to fetch investment ideas. Please try again.");
+          }
+        } catch (err) {
+          console.error("Error fetching investment ideas:", err);
+          setError("Failed to fetch investment ideas. Please try again.");
+        } finally {
+          setIsLoading(false);
+        }
+      };
 
-  // Function to handle adding an idea to the portfolio
-  const handleAddToPortfolio = (idea) => {
-    console.log("Adding to portfolio:", idea);
-    alert(
-      `Investment idea for ${idea.stockName} has been added to the portfolio.`
-    );
-  };
-
-  // Function to handle replacing an idea
-  const handleReplaceIdea = (index) => {
-    console.log(`Replacing idea at index ${index}`);
-    alert(`Replaced idea at index ${index}`);
-  };
+      fetchInvestmentIdeas();
+    } else {
+      console.error("Missing impactData or investmentIdeas:", impactData);
+      setError("Missing assessment ID or investment ideas. Unable to proceed.");
+      setIsLoading(false);
+    }
+  }, [impactData]);
 
   return (
     <div className="investment-ideas-page">
       <h2>Investment Ideas</h2>
 
       {isLoading && (
-        <p>Loading investment ideas... This might take up to 1 minute.</p>
+        <Loading message="Loading investment ideas... This might take up to 1 minute." />
       )}
 
       {error && <div className="error-message">{error}</div>}
@@ -261,53 +75,23 @@ function InvestmentIdeasPage({ impactData }) {
                 <th>Stock Price</th>
                 <th>Position</th>
                 <th>Add to Portfolio</th>
-                <th>Replace Idea</th>
-                <th>1M Price Change</th>
-                <th>3M Price Change</th>
-                <th>1Y Price Change</th>
-                <th>Market Cap</th>
-                <th>P/E</th>
-                <th>PEG</th>
-                <th>Price to Sales</th>
-                <th>Price to Book</th>
-                <th>EV/Revenue</th>
-                <th>EV/EBITDA</th>
               </tr>
             </thead>
             <tbody>
               {investmentIdeas.map((idea, index) => (
                 <tr key={index}>
                   <td>{index + 1}</td>
-                  <td>{idea.stockTicker}</td>
-                  <td>{idea.stockName}</td>
-                  <td>{idea.stockPrice}</td>
+                  <td>{idea.ticker}</td>
+                  <td>{idea.name}</td>
+                  <td>{idea.currentPrice}</td>
                   <td>{idea.position}</td>
                   <td>
-                    <button
+                    <Button
+                      text="+"
                       className="add-button"
-                      onClick={() => handleAddToPortfolio(idea)}
-                    >
-                      +
-                    </button>
+                      // onClick={() => handleAddToPortfolio(idea)}
+                    />
                   </td>
-                  <td>
-                    <button
-                      className="replace-button"
-                      onClick={() => handleReplaceIdea(index)}
-                    >
-                      :
-                    </button>
-                  </td>
-                  <td>{idea.oneMonthChange}</td>
-                  <td>{idea.threeMonthChange}</td>
-                  <td>{idea.oneYearChange}</td>
-                  <td>{idea.marketCap}</td>
-                  <td>{idea.peRatio}</td>
-                  <td>{idea.pegRatio}</td>
-                  <td>{idea.priceToSales}</td>
-                  <td>{idea.priceToBook}</td>
-                  <td>{idea.evRevenue}</td>
-                  <td>{idea.evEbitda}</td>
                 </tr>
               ))}
             </tbody>

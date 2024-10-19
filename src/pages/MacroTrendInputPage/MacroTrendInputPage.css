@@ -33,7 +33,7 @@
 .macro-trend-input-page__form--textarea {
   width: 100%;
   padding: 1rem;
-  height: 15rem;
+  height: 15srem;
   background-color: #1f1f1f;
   font-size: 1rem;
   border: 1px solid #4b7f52;

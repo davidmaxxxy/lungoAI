@@ -8,14 +8,16 @@ function WorkflowManagementPage() {
   const [activeStage, setActiveStage] = useState(1);
   const [impactData, setImpactData] = useState(null);
 
+  // Move to the next stage and pass the data if available
   const handleNextStage = (data = null) => {
     setActiveStage((prevStage) => prevStage + 1);
-    if (data) setImpactData(data);
+    if (data) {
+      setImpactData(data);
+    }
   };
 
   return (
     <div className="workflow-management-page">
-      {/* Render Workflow Stages Navigation */}
       <div className="workflow-management-page__stages">
         {[
           {
@@ -49,7 +51,6 @@ function WorkflowManagementPage() {
         ))}
       </div>
 
-      {/* Render Content Based on Active Stage */}
       {activeStage === 1 && (
         <MacroTrendInputPage onNextStage={handleNextStage} />
       )}
