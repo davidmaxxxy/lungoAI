@@ -1,3 +1,4 @@
+// Header.js
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../Header/Header.scss";
@@ -7,12 +8,15 @@ const Header = () => {
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
 
+  // Removed useUser import and user related logic
+  // import { useUser } from "../../context/UserContext"; // Import useUser hook
+
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
 
   const handlePortfolioNavigation = () => {
-    navigate("/portfolio"); // Fixed the navigation path
+    navigate("/portfolio");
   };
 
   return (
@@ -34,11 +38,11 @@ const Header = () => {
           </div>
           <div
             className="header__button header__button--portfolio"
-            onClick={handlePortfolioNavigation} // Fixed navigation to Portfolio page
+            onClick={handlePortfolioNavigation}
           >
             Portfolio
           </div>
-          <div className="header__button header__button--signup">Sign Up</div>
+          {/* Removed login/logout functionality since it's not required */}
         </nav>
       </div>
     </header>

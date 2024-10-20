@@ -1,3 +1,4 @@
+// App.js
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./styles/main.scss";
@@ -17,8 +18,11 @@ function App() {
         {/* The single entry point for the workflow with all stages */}
         <Route path="/stages" element={<WorkflowManagementPage />} />
 
-        {/* Fixed the typo in the route name */}
+        {/* Portfolio route */}
         <Route path="/portfolio" element={<PortfolioPage />} />
+
+        {/* Removed Login route as it's not part of the flow anymore */}
+        {/* <Route path="/login" element={<LoginPage />} /> */}
       </Routes>
     </Router>
   );

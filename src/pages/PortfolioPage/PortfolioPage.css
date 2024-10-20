@@ -7,68 +7,77 @@
   width: 100%;
   box-sizing: border-box;
 }
-.portfolio-page h2 {
+.portfolio-page__title {
   color: #c3f564;
   margin-bottom: 1.5rem;
   text-align: center;
 }
-.portfolio-page .portfolio-table {
-  width: 80%;
+.portfolio-page__table {
+  width: 100%;
   overflow-x: auto;
   border-radius: 20px;
   box-shadow: 0px 4px 10px #c3f564;
 }
-.portfolio-page .portfolio-table table {
+@media (min-width: 768px) {
+  .portfolio-page__table {
+    width: 80%;
+  }
+}
+.portfolio-page__table-element {
   width: 100%;
   border-collapse: collapse;
 }
-.portfolio-page .portfolio-table table thead tr {
+.portfolio-page__table-element thead tr {
   background-color: #4b7f52;
   color: white;
 }
-.portfolio-page .portfolio-table table thead tr th {
+.portfolio-page__table-element thead tr th {
   padding: 1rem;
   text-align: center;
   font-size: 0.9rem;
   border: 1px solid #3b483b;
 }
 @media (min-width: 768px) {
-  .portfolio-page .portfolio-table table thead tr th {
+  .portfolio-page__table-element thead tr th {
     font-size: 1rem;
   }
 }
-.portfolio-page .portfolio-table table tbody tr:nth-child(even) {
+.portfolio-page__table-element tbody tr:nth-child(even) {
   background-color: #2c2c2c;
 }
-.portfolio-page .portfolio-table table tbody tr:nth-child(odd) {
+.portfolio-page__table-element tbody tr:nth-child(odd) {
   background-color: #121212;
 }
-.portfolio-page .portfolio-table table tbody tr td {
+.portfolio-page__table-element tbody tr td {
   padding: 1rem;
   text-align: left;
   font-size: 0.9rem;
   border: 1px solid #3b483b;
 }
 @media (min-width: 768px) {
-  .portfolio-page .portfolio-table table tbody tr td {
+  .portfolio-page__table-element tbody tr td {
     font-size: 1rem;
     text-align: center;
   }
 }
-.portfolio-page .portfolio-table table tbody tr td .theme-container {
+.portfolio-page__table-element tbody tr td .portfolio-page__theme-container {
   color: #121212;
-  background-color: #c3f564;
-  padding: 0.5rem;
-  border-radius: 5px;
-  border: solid #4b7f52;
+  background-color: #ffc857;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  border: solid orange;
   margin-bottom: 0.5rem;
   display: inline-block;
   font-size: small;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
 }
-.portfolio-page .portfolio-table table tbody tr td .theme-container:not(:last-child) {
+.portfolio-page__table-element tbody tr td .portfolio-page__theme-container:not(:last-child) {
   margin-right: 5px;
 }
-.portfolio-page .portfolio-table table tbody tr td .remove-button {
+.portfolio-page__table-element tbody tr td .portfolio-page__remove-button {
   background-color: #ff6b6b;
   border: solid #ff6b6b 2px;
   border-radius: 10px;
@@ -77,16 +86,21 @@
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
-.portfolio-page .portfolio-table table tbody tr td .remove-button:hover {
+.portfolio-page__table-element tbody tr td .portfolio-page__remove-button:hover {
   background-color: #ff3838;
   transform: scale(1.1);
 }
 @media (min-width: 768px) {
-  .portfolio-page .portfolio-table table tbody tr td .remove-button {
+  .portfolio-page__table-element tbody tr td .portfolio-page__remove-button {
     font-size: 14px;
   }
 }
-.portfolio-page .portfolio-table .empty-portfolio-message {
+.portfolio-page__error-message {
+  color: #ffc857;
+  margin-top: 1rem;
+  text-align: center;
+}
+.portfolio-page__empty-message {
   color: #ffc857;
   margin-top: 1rem;
   text-align: center;

@@ -8,7 +8,6 @@ function WorkflowManagementPage() {
   const [activeStage, setActiveStage] = useState(1);
   const [impactData, setImpactData] = useState(null);
 
-  // Move to the next stage and pass the data if available
   const handleNextStage = (data = null) => {
     setActiveStage((prevStage) => prevStage + 1);
     if (data) {

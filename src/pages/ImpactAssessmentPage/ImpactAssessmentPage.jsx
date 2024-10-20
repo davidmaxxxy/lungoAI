@@ -35,38 +35,16 @@ function ImpactAssessmentPage({ data, onNextStage }) {
     setIsLoading(true);
     setError("");
 
-    console.log(
-      "Sending request to generate investment ideas with id:",
-      data.id
-    ); // Debugging line
-
     try {
-      // Send a POST request to generate investment ideas
       const response = await axios.post(
         "http://localhost:5001/api/ideas/generate-investment-ideas",
         {
-          impact_assessment_id: data.id, // Ensure data.id is the correct impact assessment ID
+          impact_assessment_id: data.id,
         }
       );
 
-      console.log("Response from backend:", response.data); // Debugging step: Log response data
-
       if (response.status === 200) {
         const { impact_assessment_id, investmentIdeas } = response.data;
-
-        // Check if the `impact_assessment_id` exists
-        if (!impact_assessment_id) {
-          console.error(
-            "Missing impact_assessment_id in response data",
-            response.data
-          );
-          setError(
-            "Missing impact assessment ID in response. Please try again."
-          );
-          return;
-        }
-
-        // Pass both `impact_assessment_id` and `investmentIdeas` to `onNextStage`
         onNextStage({ id: impact_assessment_id, investmentIdeas });
       }
     } catch (err) {
@@ -94,17 +72,18 @@ function ImpactAssessmentPage({ data, onNextStage }) {
             <h4>Impact Level: {assetClass.impactLevel}</h4>
           </div>
           <div className="impact-assessment-page__subcategories">
-            {Object.entries(assetClass.subcategories).map(
-              ([subcategory, description], subIndex) => (
-                <div
-                  key={subIndex}
-                  className="impact-assessment-page__subcategory"
-                >
-                  <h4>{formatSubcategoryTitle(subcategory)}</h4>
-                  <p>{description}</p>
-                </div>
-              )
-            )}
+            <div className="impact-assessment-page__subcategory">
+              <h4>Price Trends</h4>
+              <p>{assetClass.subcategories.price_trends}</p>
+            </div>
+            <div className="impact-assessment-page__subcategory">
+              <h4>Market Implications</h4>
+              <p>{assetClass.subcategories.market_implications}</p>
+            </div>
+            <div className="impact-assessment-page__subcategory">
+              <h4>Sector Specific Effects</h4>
+              <p>{assetClass.subcategories.sector_specific_effects}</p>
+            </div>
           </div>
         </div>
       ))}
@@ -112,7 +91,7 @@ function ImpactAssessmentPage({ data, onNextStage }) {
       {error && <div className="error-message">{error}</div>}
 
       {isLoading ? (
-        <Loading message="Generating investment ideas... This might take up to 1min." />
+        <Loading message="Generating investment ideas... This might take up to 1 min." />
       ) : (
         <div className="impact-assessment-page__generate-ideas-button-container">
           <Button
@@ -124,12 +103,6 @@ function ImpactAssessmentPage({ data, onNextStage }) {
       )}
     </div>
   );
-}
-
-function formatSubcategoryTitle(subcategory) {
-  return subcategory
-    .replace(/_/g, " ") // Replace underscores with spaces
-    .replace(/\b\w/g, (l) => l.toUpperCase()); // Capitalize first letter of each word
 }
 
 export default ImpactAssessmentPage;

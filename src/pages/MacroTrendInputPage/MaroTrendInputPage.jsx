@@ -9,7 +9,6 @@ function MacroTrendInputPage({ onNextStage }) {
   const [isLoading, setIsLoading] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [error, setError] = useState("");
-  const userId = 1; // Assuming user ID is hardcoded here for now. You can replace it with dynamic user ID from your app's state/context.
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
@@ -17,10 +16,9 @@ function MacroTrendInputPage({ onNextStage }) {
     setFormSubmitted(true);
     setError("");
 
-    // Define the payload to match backend requirements
     const payload = {
       data: themeDescription,
-      user_id: userId,
+      user_id: 1, // Dummy ID for simplicity since login is not needed anymore
     };
 
     try {
@@ -34,6 +32,8 @@ function MacroTrendInputPage({ onNextStage }) {
           ...response.data,
           id: response.data.impact_assessment_id,
         });
+      } else {
+        throw new Error("Failed to generate impact analysis.");
       }
     } catch (error) {
       console.error("Error generating impact analysis:", error);
