@@ -1,15 +1,16 @@
+// WorkflowManagementPage.jsx
 import React, { useState } from "react";
 import MacroTrendInputPage from "../MacroTrendInputPage/MacroTrendInputPage";
 import ImpactAssessmentPage from "../ImpactAssessmentPage/ImpactAssessmentPage";
 import InvestmentIdeasPage from "../InvestmentIdeasPage/InvestmentIdeasPage";
+import Header from "../../components/Header/Header";
 import "./WorkflowManagementPage.scss";
 
 function WorkflowManagementPage() {
+  const [portfolioCount, setPortfolioCount] = useState(0); // Track portfolio count
   const [activeStage, setActiveStage] = useState(1);
   const [impactData, setImpactData] = useState(null);
   const [investmentIdeas, setInvestmentIdeas] = useState([]);
-
-  // WorkflowManagementPage.jsx
 
   const handleNextStage = (data = null) => {
     console.log("Moving to next stage, current active stage:", activeStage);
@@ -33,8 +34,13 @@ function WorkflowManagementPage() {
     }
   };
 
+  const handlePortfolioUpdate = () => {
+    setPortfolioCount((prevCount) => prevCount + 1);
+  };
+
   return (
     <div className="workflow-management-page">
+      <Header portfolioCount={portfolioCount} />
       <div className="workflow-management-page__stages">
         {[
           {
@@ -78,6 +84,7 @@ function WorkflowManagementPage() {
         <InvestmentIdeasPage
           impactData={impactData} // Pass the complete impact data, including themeId
           investmentIdeas={investmentIdeas}
+          onPortfolioUpdate={handlePortfolioUpdate} // Pass portfolio update handler
         />
       )}
     </div>

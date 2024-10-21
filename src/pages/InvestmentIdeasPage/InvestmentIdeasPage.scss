@@ -15,7 +15,6 @@
   }
 
   &__disclaimer {
-    
     padding: 2rem 3rem;
     font-size: 0.9rem;
     color: #666;
@@ -29,8 +28,8 @@
     box-shadow: 0px 4px 10px $color-primary;
 
     table {
-      width: 100%; // Ensure the table uses full width of its container
-      border-collapse: collapse; // Ensure borders collapse for a cleaner look
+      width: 100%;
+      border-collapse: collapse;
 
       thead {
         tr {
@@ -45,7 +44,6 @@
 
             @include respond-to(tablet) {
               font-size: 1rem;
-              text-align: center;
             }
           }
         }
@@ -73,7 +71,6 @@
             }
           }
 
-          // Styling for buttons within the table cells
           .add-button,
           .replace-button {
             font-family: "Orbitron", sans-serif;
@@ -117,5 +114,45 @@
   .error-message {
     color: $color-accent;
     margin-top: 1rem;
+  }
+
+  &__success-popup {
+    position: fixed;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: $color-primary;
+    color: $color-background;
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    animation: slideIn 0.5s ease-out forwards,
+      fadeOut 1.5s 1.5s ease-out forwards;
+    z-index: 100;
+
+    @include respond-to(tablet) {
+      font-size: 1rem;
+    }
+  }
+
+  @keyframes slideIn {
+    0% {
+      top: -100px;
+      opacity: 0;
+    }
+    100% {
+      top: 50%;
+      opacity: 1;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  @keyframes fadeOut {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
   }
 }

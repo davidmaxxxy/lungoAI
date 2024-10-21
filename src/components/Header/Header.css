@@ -103,7 +103,7 @@
   color: #121212;
   background-color: #c3f564;
   border-radius: 5px;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, transform 0.3s;
 }
 .header__button:hover {
   background-color: #ccf77c;
@@ -115,6 +115,10 @@
 }
 .header__button--portfolio {
   background-color: #4b7f52;
+  position: relative;
+}
+.header__button--portfolio.header__button--animate {
+  animation: highlight 1.5s ease-out;
 }
 .header__button--signup {
   background-color: #c3f564;
@@ -123,4 +127,19 @@
   width: 25px;
   height: 25px;
   margin: auto;
+}
+
+@keyframes highlight {
+  0% {
+    transform: scale(1);
+    background-color: #5e9f67;
+  }
+  50% {
+    transform: scale(1.2);
+    background-color: #7db385;
+  }
+  100% {
+    transform: scale(1);
+    background-color: #4b7f52;
+  }
 }/*# sourceMappingURL=Header.css.map */

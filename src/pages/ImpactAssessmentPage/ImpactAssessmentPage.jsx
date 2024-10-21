@@ -31,14 +31,11 @@ function ImpactAssessmentPage({ data, onNextStage }) {
     return null;
   }
 
-  // ImpactAssessmentPage.jsx
-
   const handleGenerateInvestmentIdeas = async () => {
     setIsLoading(true);
     setError("");
 
     try {
-      console.log("Sending impact assessment ID:", data.id);
       const response = await axios.post(
         "http://localhost:5001/api/ideas/generate-investment-ideas",
         {
@@ -48,10 +45,7 @@ function ImpactAssessmentPage({ data, onNextStage }) {
 
       if (response.status === 200) {
         const { impact_assessment_id, investmentIdeas } = response.data;
-        const themeId = data.theme_id;
-
-        console.log("Received response with themeId:", themeId);
-
+        const themeId = data.theme_id; // Extract themeId to ensure it's available
         if (!themeId) {
           console.error("ThemeId is missing in impactData:", data);
           setError(
@@ -113,11 +107,13 @@ function ImpactAssessmentPage({ data, onNextStage }) {
       {isLoading ? (
         <Loading message="Generating investment ideas... This might take up to 1 min." />
       ) : (
-        <Button
-          text="Generate Investment Ideas"
-          className="stages-button"
-          onClick={handleGenerateInvestmentIdeas}
-        />
+        <div className="impact-assessment-page__generate-ideas-button-container">
+          <Button
+            variant="primary"
+            text="Generate Investment Ideas"
+            onClick={handleGenerateInvestmentIdeas}
+          />
+        </div>
       )}
       {error && <div className="error-message">{error}</div>}
     </div>

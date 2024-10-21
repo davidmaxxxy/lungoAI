@@ -114,9 +114,9 @@ function PortfolioPage() {
                       <td>{idea.asset_type}</td>
                       <td>
                         <Button
-                          className="portfolio-page__remove-button"
                           text="-"
                           onClick={() => handleRemoveFromPortfolio(idea.id)}
+                          variant="negative"
                         />
                       </td>
                     </tr>

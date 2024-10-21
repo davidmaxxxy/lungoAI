@@ -1,15 +1,13 @@
-// Header.js
-import React, { useState } from "react";
+// Header.jsx
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../Header/Header.scss";
 import { FaSun, FaBars, FaTimes } from "react-icons/fa";
 
-const Header = () => {
+const Header = ({ portfolioCount }) => {
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
-
-  // Removed useUser import and user related logic
-  // import { useUser } from "../../context/UserContext"; // Import useUser hook
+  const [portfolioAnimation, setPortfolioAnimation] = useState(false);
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -18,6 +16,17 @@ const Header = () => {
   const handlePortfolioNavigation = () => {
     navigate("/portfolio");
   };
+
+  useEffect(() => {
+    if (portfolioCount > 0) {
+      setPortfolioAnimation(true);
+      // Remove animation class after 1.5 seconds
+      const timer = setTimeout(() => {
+        setPortfolioAnimation(false);
+      }, 1500);
+      return () => clearTimeout(timer);
+    }
+  }, [portfolioCount]);
 
   return (
     <header className="header">
@@ -37,12 +46,14 @@ const Header = () => {
             <FaSun className="header__icon" />
           </div>
           <div
-            className="header__button header__button--portfolio"
+            className={`header__button header__button--portfolio ${
+              portfolioAnimation ? "header__button--animate" : ""
+            }`}
             onClick={handlePortfolioNavigation}
           >
             Portfolio
+            {portfolioCount > 0 && ` (${portfolioCount})`}
           </div>
-          {/* Removed login/logout functionality since it's not required */}
         </nav>
       </div>
     </header>

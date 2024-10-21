@@ -63,6 +63,7 @@
 }
 .portfolio-page__theme-container {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   cursor: pointer;
 }

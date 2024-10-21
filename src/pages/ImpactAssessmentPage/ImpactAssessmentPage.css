@@ -5,6 +5,8 @@
   padding: 2rem;
   width: 100%;
   box-sizing: border-box;
+  position: relative;
+  min-height: 100vh;
 }
 .impact-assessment-page h2 {
   color: #c3f564;
@@ -93,22 +95,14 @@
 .impact-assessment-page__generate-ideas-button-container {
   position: fixed;
   bottom: 20px;
+  left: 0;
+  right: 0;
   display: flex;
   justify-content: center;
   z-index: 1000;
-  width: auto;
+  padding: 1rem;
 }
-.impact-assessment-page__generate-ideas-button-container .stages-button {
-  font-family: "Orbitron", sans-serif;
-  font-size: 15px;
-  background-color: #c3f564;
-  border: solid #4b7f52;
-  border-radius: 10px;
-  padding: 1.2rem 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-.impact-assessment-page__generate-ideas-button-container .stages-button:hover {
-  background-color: #d6f894;
-  transform: scale(1.1);
+.impact-assessment-page .error-message {
+  color: #ffc857;
+  margin-top: 1rem;
 }/*# sourceMappingURL=ImpactAssessmentPage.css.map */

@@ -8,6 +8,8 @@
   padding: 2rem;
   width: 100%;
   box-sizing: border-box;
+  position: relative;
+  min-height: 100vh; // Make sure the page takes up the full viewport height
 
   h2 {
     color: $color-primary;
@@ -101,25 +103,20 @@
   &__generate-ideas-button-container {
     position: fixed;
     bottom: 20px;
+    left: 0;
+    right: 0;
     display: flex;
     justify-content: center;
     z-index: 1000;
-    width: auto;
+    padding: 1rem;
+    // background-color: rgba(
+    //   $color-background,
+    //   0.9
+    // ); // Adding a subtle background to separate the button from content
+  }
 
-    .stages-button {
-      font-family: "Orbitron", sans-serif;
-      font-size: 15px;
-      background-color: $color-primary;
-      border: solid $color-secondary;
-      border-radius: 10px;
-      padding: 1.2rem 1rem;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-
-      &:hover {
-        background-color: lighten($color-primary, 10%);
-        transform: scale(1.1);
-      }
-    }
+  .error-message {
+    color: $color-accent;
+    margin-top: 1rem;
   }
 }
