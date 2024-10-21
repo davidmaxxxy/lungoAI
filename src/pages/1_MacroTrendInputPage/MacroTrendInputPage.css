@@ -2,8 +2,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 1rem;
-  width: 80%;
+  padding: 2rem;
+  margin-top: 1rem;
 }
 @media (min-width: 768px) {
   .macro-trend-input-page {
@@ -33,7 +33,7 @@
 .macro-trend-input-page__form--textarea {
   width: 100%;
   padding: 1rem;
-  height: 15srem;
+  height: 15rem;
   background-color: #1f1f1f;
   font-size: 1rem;
   border: 1px solid #4b7f52;

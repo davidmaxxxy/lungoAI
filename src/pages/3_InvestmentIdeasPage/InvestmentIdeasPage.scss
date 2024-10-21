@@ -121,10 +121,11 @@
     top: -100px;
     left: 50%;
     transform: translateX(-50%);
-    background-color: $color-primary;
-    color: $color-background;
+    background-color: $color-background;
+    color: white;
     padding: 1rem 2rem;
-    border-radius: 10px;
+    border-radius: 20px;
+    border: solid $color-primary;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
     animation: slideIn 0.5s ease-out forwards,
       fadeOut 1.5s 1.5s ease-out forwards;

@@ -8,7 +8,7 @@ function Hero() {
 
   // Updated button click to navigate directly to the stages workflow
   const handleCTAButtonClick = () => {
-    navigate("/stages"); // Navigate to the workflow management page without login
+    navigate("/stages/macro-theme"); // Navigate to the workflow management page without login
   };
 
   return (

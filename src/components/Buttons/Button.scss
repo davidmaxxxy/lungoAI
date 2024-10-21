@@ -49,4 +49,17 @@
       background-color: lighten($color-secondary, 5%);
     }
   }
+
+  &--back {
+    background-color: $color-background;
+    border: solid $color-primary;
+    color: #fff;
+    border-radius: 20px;
+    padding: 0.5rem 1rem;
+
+    &:hover {
+      background-color: darken($color-primary, 70%);
+      transform: scale(1.1);
+    }
+  }
 }

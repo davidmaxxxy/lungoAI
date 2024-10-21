@@ -1,13 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./MacroTrendInputPage.scss";
 import Button from "../../components/Buttons/Button";
+import FixedButtonContainer from "../../components/FixedButtonContainer/FixedButtonContainer";
 import Loading from "../../components/Loading/Loading";
 
-function MacroTrendInputPage({ onNextStage }) {
-  const [themeDescription, setThemeDescription] = useState("");
+function MacroTrendInputPage({ onNextStage, onPreviousStage }) {
+  const [themeDescription, setThemeDescription] = useState(() => {
+    const savedThemeDescription = localStorage.getItem("themeDescription");
+    return savedThemeDescription ? savedThemeDescription : "";
+  });
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    localStorage.setItem("themeDescription", themeDescription);
+  }, [themeDescription]);
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
@@ -16,7 +24,7 @@ function MacroTrendInputPage({ onNextStage }) {
 
     const payload = {
       data: themeDescription,
-      user_id: 1, // Dummy ID for simplicity since login is not needed anymore
+      user_id: 1,
     };
 
     try {
@@ -36,7 +44,7 @@ function MacroTrendInputPage({ onNextStage }) {
     } catch (error) {
       console.error("Error generating impact analysis:", error);
       setError("Failed to generate impact analysis. Please try again.");
-      setIsLoading(false); // Re-enable form if an error occurs
+      setIsLoading(false);
     }
   };
 
@@ -58,11 +66,6 @@ function MacroTrendInputPage({ onNextStage }) {
             rows={4}
             required
           />
-          <Button
-            text={isLoading ? "Generating..." : "Generate Impact Assessment"}
-            type={"submit"}
-            disabled={isLoading}
-          />
         </form>
       )}
 
@@ -73,6 +76,20 @@ function MacroTrendInputPage({ onNextStage }) {
       {error && (
         <div className="macro-trend-input-page__error-message">{error}</div>
       )}
+
+      <FixedButtonContainer>
+        {!isLoading && (
+          <>
+            <Button
+              variant="primary"
+              text="Generate Impact Assessment"
+              type={"submit"}
+              onClick={handleFormSubmit}
+            />
+            <Button variant="back" text="Back" onClick={onPreviousStage} />
+          </>
+        )}
+      </FixedButtonContainer>
     </div>
   );
 }

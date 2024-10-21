@@ -38,4 +38,15 @@
 }
 .stages-button--secondary:hover {
   background-color: #548f5c;
+}
+.stages-button--back {
+  background-color: #121212;
+  border: solid #c3f564;
+  color: #fff;
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+}
+.stages-button--back:hover {
+  background-color: black;
+  transform: scale(1.1);
 }/*# sourceMappingURL=Button.css.map */

@@ -6,8 +6,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 1rem;
-  width: 80%;
+  padding: 2rem;
+  margin-top: 1rem;
 
   @include respond-to(tablet) {
     width: 60%;
@@ -37,7 +37,7 @@
     &--textarea {
       width: 100%;
       padding: 1rem;
-      height: 15srem; // Set a fixed height to ensure consistency
+      height: 15rem; // Set a fixed height to ensure consistency
       background-color: lighten($color-background, 5%);
       font-size: 1rem;
       border: 1px solid $color-secondary;

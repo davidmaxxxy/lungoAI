@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Button from "../../components/Buttons/Button";
+import FixedButtonContainer from "../../components/FixedButtonContainer/FixedButtonContainer";
 import Loading from "../../components/Loading/Loading";
 import "./ImpactAssessmentPage.scss";
 import axios from "axios";
@@ -13,9 +14,15 @@ import {
   faBitcoinSign,
 } from "@fortawesome/free-solid-svg-icons";
 
-function ImpactAssessmentPage({ data, onNextStage }) {
+function ImpactAssessmentPage({ data, onNextStage, onPreviousStage }) {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    if (data) {
+      localStorage.setItem("impactData", JSON.stringify(data));
+    }
+  }, [data]);
 
   const assetClassIcons = {
     Stocks: faChartLine,
@@ -45,7 +52,8 @@ function ImpactAssessmentPage({ data, onNextStage }) {
 
       if (response.status === 200) {
         const { impact_assessment_id, investmentIdeas } = response.data;
-        const themeId = data.theme_id; // Extract themeId to ensure it's available
+        const themeId = data.theme_id;
+
         if (!themeId) {
           console.error("ThemeId is missing in impactData:", data);
           setError(
@@ -57,7 +65,7 @@ function ImpactAssessmentPage({ data, onNextStage }) {
 
         onNextStage({
           id: impact_assessment_id,
-          themeId, // Pass themeId to the next stage
+          themeId,
           investmentIdeas,
         });
       } else {
@@ -108,17 +116,23 @@ function ImpactAssessmentPage({ data, onNextStage }) {
         </>
       )}
 
-      {isLoading ? (
+      {isLoading && (
         <Loading message="Generating investment ideas... This might take up to 1 min." />
-      ) : (
-        <div className="impact-assessment-page__generate-ideas-button-container">
-          <Button
-            variant="primary"
-            text="Generate Investment Ideas"
-            onClick={handleGenerateInvestmentIdeas}
-          />
-        </div>
       )}
+
+      <FixedButtonContainer>
+        {!isLoading && (
+          <>
+            <Button
+              variant="primary"
+              text="Generate Investment Ideas"
+              onClick={handleGenerateInvestmentIdeas}
+            />
+            <Button variant="back" text="Back" onClick={onPreviousStage} />
+          </>
+        )}
+      </FixedButtonContainer>
+
       {error && <div className="error-message">{error}</div>}
     </div>
   );

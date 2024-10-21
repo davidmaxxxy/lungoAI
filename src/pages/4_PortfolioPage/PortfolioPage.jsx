@@ -3,18 +3,23 @@ import axios from "axios";
 import Button from "../../components/Buttons/Button";
 import Loading from "../../components/Loading/Loading";
 import { useNavigate } from "react-router-dom";
+import FixedButtonContainer from "../../components/FixedButtonContainer/FixedButtonContainer";
 import "./PortfolioPage.scss";
 
 function PortfolioPage() {
   const [portfolio, setPortfolio] = useState([]);
   const [isLoadingPortfolio, setIsLoadingPortfolio] = useState(true);
   const [errorPortfolio, setErrorPortfolio] = useState("");
-  const [successMessage, setSuccessMessage] = useState("");
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
 
   const navigate = useNavigate();
 
   const handleCTAButtonClick = () => {
-    navigate("/stages");
+    navigate("/stages/macro-theme");
+  };
+
+  const handlePreviousStage = () => {
+    navigate("/stages/investment-ideas");
   };
 
   useEffect(() => {
@@ -46,7 +51,12 @@ function PortfolioPage() {
       );
       if (response.status === 200) {
         setPortfolio((prev) => prev.filter((item) => item.id !== ideaId));
-        setSuccessMessage(`Successfully removed item from your portfolio.`);
+
+        // Show success pop-up when item is successfully removed
+        setShowSuccessPopup(true);
+        setTimeout(() => {
+          setShowSuccessPopup(false);
+        }, 2000);
       } else {
         setErrorPortfolio("Failed to remove item.");
       }
@@ -59,6 +69,7 @@ function PortfolioPage() {
   return (
     <div className="portfolio-page">
       <h2 className="portfolio-page__title">Your Portfolio</h2>
+      <Button variant="back" text="Back" onClick={handlePreviousStage} />
 
       {isLoadingPortfolio ? (
         <Loading message="Loading your portfolio..." />
@@ -67,11 +78,6 @@ function PortfolioPage() {
           {errorPortfolio && (
             <div className="portfolio-page__error-message">
               {errorPortfolio}
-            </div>
-          )}
-          {successMessage && (
-            <div className="portfolio-page__success-message">
-              {successMessage}
             </div>
           )}
           {!errorPortfolio && portfolio.length > 0 ? (
@@ -140,6 +146,13 @@ function PortfolioPage() {
             )
           )}
         </>
+      )}
+
+      {/* Success Popup for Removal */}
+      {showSuccessPopup && (
+        <div className="portfolio-page__success-popup">
+          Successfully removed item from portfolio!
+        </div>
       )}
     </div>
   );

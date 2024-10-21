@@ -2,12 +2,6 @@
 @import "../../styles/mixins";
 
 .workflow-management-page {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 2rem;
-  margin-top: 12rem;
-  // Stage Navigation Styles
   &__stages {
     display: flex;
     flex-direction: column;
@@ -67,6 +61,25 @@
 
     @include respond-to(tablet) {
       font-size: 1rem;
+    }
+  }
+
+  &__back-button {
+    margin-top: 1rem;
+
+    button {
+      font-family: "Orbitron", sans-serif;
+      background-color: $color-background;
+      border: solid $color-primary;
+      padding: 0.5rem 1rem;
+      color: #fff;
+      border-radius: 20px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: darken($color-primary, 70%);
+        transform: scale(1.1);
+      }
     }
   }
 }

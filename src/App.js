@@ -1,4 +1,3 @@
-// App.js
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./styles/main.scss";
@@ -15,8 +14,8 @@ function App() {
         {/* Home route */}
         <Route path="/" element={<Hero />} />
 
-        {/* The single entry point for the workflow with all stages */}
-        <Route path="/stages" element={<WorkflowManagementPage />} />
+        {/* Workflow route */}
+        <Route path="/stages/*" element={<WorkflowManagementPage />} />
 
         {/* Portfolio route */}
         <Route path="/portfolio" element={<PortfolioPage />} />

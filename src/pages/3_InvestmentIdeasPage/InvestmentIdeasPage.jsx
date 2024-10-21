@@ -1,15 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Button from "../../components/Buttons/Button";
+import FixedButtonContainer from "../../components/FixedButtonContainer/FixedButtonContainer";
 import "./InvestmentIdeasPage.scss";
 
 function InvestmentIdeasPage({
   impactData,
   investmentIdeas,
   onPortfolioUpdate,
+  onPreviousStage,
 }) {
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
-  const [addedIdeas, setAddedIdeas] = useState(new Set()); // Track added ideas using Set for efficient lookup
+  const [addedIdeas, setAddedIdeas] = useState(new Set());
+
+  useEffect(() => {
+    if (investmentIdeas.length > 0) {
+      localStorage.setItem("investmentIdeas", JSON.stringify(investmentIdeas));
+    }
+  }, [investmentIdeas]);
 
   const handleAddToPortfolio = async (idea) => {
     if (!impactData.themeId) {
@@ -35,15 +43,13 @@ function InvestmentIdeasPage({
 
       if (response.status === 200) {
         console.log(`Successfully added ${idea.name} to your portfolio.`);
-        onPortfolioUpdate(); // Update portfolio count in header
+        onPortfolioUpdate();
 
-        // Show success popup for 2 seconds
         setShowSuccessPopup(true);
         setTimeout(() => {
           setShowSuccessPopup(false);
         }, 2000);
 
-        // Add the idea to the set of added ideas to disable the button
         setAddedIdeas((prevAddedIdeas) => new Set(prevAddedIdeas).add(idea.id));
       } else {
         console.error("Failed to add item to portfolio.");
@@ -86,7 +92,7 @@ function InvestmentIdeasPage({
                       text="Add"
                       variant="primary"
                       onClick={() => handleAddToPortfolio(idea)}
-                      disabled={addedIdeas.has(idea.id)} // Disable button if already added
+                      disabled={addedIdeas.has(idea.id)}
                     />
                   </td>
                 </tr>
@@ -103,6 +109,10 @@ function InvestmentIdeasPage({
           Successfully added to portfolio!
         </div>
       )}
+
+      <FixedButtonContainer>
+        <Button variant="back" text="Back" onClick={onPreviousStage} />
+      </FixedButtonContainer>
     </div>
   );
 }

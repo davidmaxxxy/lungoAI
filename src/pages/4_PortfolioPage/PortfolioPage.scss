@@ -10,114 +10,94 @@
   width: 100%;
   box-sizing: border-box;
 
+  &__theme-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+
+    &--theme {
+      background-color: $color-accent;
+      color: $color-background;
+      padding: 0.25rem 0.75rem;
+      border: solid orange;
+      border-radius: 20px;
+      font-size: small;
+      text-align: center;
+
+      @include respond-to(tablet) {
+        font-size: small;
+      }
+    }
+  }
+
   &__title {
     color: $color-primary;
     margin-bottom: 1.5rem;
     text-align: center;
-    font-size: 2rem;
   }
 
-  &__error-message,
-  &__success-message {
+  &__error-message {
+    color: $color-accent;
     margin-top: 1rem;
     text-align: center;
-    font-weight: bold;
-    padding: 1rem;
-    border-radius: 5px;
+  }
 
-    &--error {
-      color: $color-accent;
-    }
+  &__success-message {
+    color: $color-text;
+    margin-top: 1rem;
+    text-align: center;
+  }
 
-    &--success {
-      color: $color-primary;
-      background-color: $color-background;
+  &__success-popup {
+    position: fixed;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: $color-primary;
+    color: $color-background;
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    animation: slideIn 0.5s ease-out forwards,
+      fadeOut 1.5s 1.5s ease-out forwards;
+    z-index: 100;
+
+    @include respond-to(tablet) {
+      font-size: 1rem;
     }
   }
 
   &__empty-message {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: $color-accent;
-    margin-top: 1rem;
+    margin-top: 2rem;
     text-align: center;
     font-size: 1.2rem;
+    color: $color-text;
 
-    &__cta-button {
-      margin-top: 1.5rem;
+    .portfolio-page__cta-button {
+      margin-top: 1rem;
+      padding: 10px 20px;
       background-color: $color-primary;
-      border: none;
       color: $color-background;
-      font-size: 1rem;
-      padding: 0.8rem 2rem;
-      border-radius: 20px;
-      border: solid $color-secondary;
+      border: none;
+      border-radius: 10px;
       cursor: pointer;
+      font-family: "Orbitron", sans-serif;
+      transition: background-color 0.3s, transform 0.3s;
 
       &:hover {
-        background-color: darken($color-primary, 10%);
+        background-color: lighten($color-primary, 10%);
         transform: scale(1.05);
       }
-
-      &:active {
-        transform: scale(0.95);
-      }
-
-      @include respond-to(tablet) {
-        font-size: 1rem;
-        padding: 0.6rem 1.5rem;
-      }
-    }
-  }
-
-  &__theme-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    cursor: pointer;
-
-    &--theme {
-      color: $color-background;
-      background-color: $color-accent;
-      padding: 0.5rem 1rem;
-      border-radius: 20px;
-      border: solid orange;
-      margin: 0.3rem;
-      display: inline-block;
-      font-size: small;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      max-width: 200px;
-    }
-  }
-
-  &__remove-button {
-    background-color: $color-negative;
-    border: solid red;
-    border-radius: 10px;
-    color: white;
-    padding: 0.5rem 1.5rem;
-    cursor: pointer;
-
-    &:hover {
-      background-color: darken($color-negative, 10%);
-      transform: scale(1.1);
     }
   }
 
   &__table {
-    width: 100%;
+    width: 80%; // Match the width of the container to maintain consistent alignment
+    margin-top: 3rem;
     overflow-x: auto;
     border-radius: 20px;
     box-shadow: 0px 4px 10px $color-primary;
-    margin-top: 2rem;
-
-    @include respond-to(tablet) {
-      width: 80%;
-    }
 
     &-element {
       width: 100%;
@@ -161,13 +141,67 @@
               font-size: 1rem;
               text-align: center;
             }
-
-            @include respond-to(tablet) {
-              font-size: 14px;
-            }
           }
         }
       }
     }
+  }
+
+  &__cta-button {
+    margin-top: 1.5rem;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: $color-primary;
+    color: $color-background;
+    font-family: "Orbitron", sans-serif;
+    transition: background-color 0.3s, transform 0.3s;
+
+    &:hover {
+      background-color: lighten($color-primary, 5%);
+      transform: scale(1.1);
+    }
+  }
+
+  &__back-button {
+    margin-top: 1rem;
+
+    button {
+      font-family: "Orbitron", sans-serif;
+      background-color: $color-background;
+      border: solid $color-primary;
+      padding: 0.5rem 1rem;
+      color: #fff;
+      border-radius: 20px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: darken($color-primary, 70%);
+        transform: scale(1.1);
+      }
+    }
+  }
+}
+
+// Keyframe animations for success pop-up
+@keyframes slideIn {
+  0% {
+    top: -100px;
+    opacity: 0;
+  }
+  100% {
+    top: 50%;
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
   }
 }

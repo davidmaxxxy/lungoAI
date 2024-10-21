@@ -1,7 +1,14 @@
 import React from "react";
 import "../Buttons/Button.scss";
 
-function Button({ text, type, className = "", onClick, disabled = false, variant = "primary" }) {
+function Button({
+  text,
+  type = "button",
+  className = "",
+  onClick,
+  disabled = false,
+  variant = "primary",
+}) {
   return (
     <button
       className={`stages-button stages-button--${variant} ${className}`}
