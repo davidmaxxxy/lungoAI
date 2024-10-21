@@ -82,7 +82,8 @@ function PortfolioPage() {
                     <th>#</th>
                     <th>Ticker</th>
                     <th>Name</th>
-                    <th>Price</th>
+                    <th>Position</th>
+                    <th>Theme Names</th>
                     <th>Asset Type</th>
                     <th>Remove</th>
                   </tr>
@@ -93,8 +94,24 @@ function PortfolioPage() {
                       <td>{index + 1}</td>
                       <td>{idea.ticker}</td>
                       <td>{idea.name}</td>
-                      <td>{idea.price}</td>
-                      <td>{idea.assetType}</td>
+                      <td>{idea.position}</td>
+                      <td>
+                        {idea.theme_names && idea.theme_names.length > 0 ? (
+                          <div className="portfolio-page__theme-container">
+                            {idea.theme_names.map((theme, themeIndex) => (
+                              <span
+                                key={themeIndex}
+                                className="portfolio-page__theme-container--theme"
+                              >
+                                {theme}
+                              </span>
+                            ))}
+                          </div>
+                        ) : (
+                          "No themes"
+                        )}
+                      </td>
+                      <td>{idea.asset_type}</td>
                       <td>
                         <Button
                           className="portfolio-page__remove-button"

@@ -13,6 +13,3 @@ root.render(
     </UserProvider>
   </React.StrictMode>
 );
-
-// Log web vitals metrics to the console:
-reportWebVitals(console.log);

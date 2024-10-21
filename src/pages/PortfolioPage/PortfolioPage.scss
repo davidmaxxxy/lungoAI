@@ -17,23 +17,22 @@
     font-size: 2rem;
   }
 
-  &__error-message {
-    color: $color-accent;
-    margin-top: 1rem;
-    text-align: center;
-    font-weight: bold;
-    padding: 1rem;
-    border-radius: 5px;
-  }
-
+  &__error-message,
   &__success-message {
-    color: $color-primary;
     margin-top: 1rem;
     text-align: center;
     font-weight: bold;
-    background-color: $color-background;
     padding: 1rem;
     border-radius: 5px;
+
+    &--error {
+      color: $color-accent;
+    }
+
+    &--success {
+      color: $color-primary;
+      background-color: $color-background;
+    }
   }
 
   &__empty-message {
@@ -46,7 +45,7 @@
     text-align: center;
     font-size: 1.2rem;
 
-    .portfolio-page__cta-button {
+    &__cta-button {
       margin-top: 1.5rem;
       background-color: $color-primary;
       border: none;
@@ -56,8 +55,6 @@
       border-radius: 20px;
       border: solid $color-secondary;
       cursor: pointer;
-      transition: background-color 0.3s ease, transform 0.2s ease;
-      animation: bounce 2s infinite;
 
       &:hover {
         background-color: darken($color-primary, 10%);
@@ -72,6 +69,41 @@
         font-size: 1rem;
         padding: 0.6rem 1.5rem;
       }
+    }
+  }
+
+  &__theme-container {
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+
+    &--theme {
+      color: $color-background;
+      background-color: $color-accent;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      border: solid orange;
+      margin: 0.3rem;
+      display: inline-block;
+      font-size: small;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 200px;
+    }
+  }
+
+  &__remove-button {
+    background-color: $color-negative;
+    border: solid red;
+    border-radius: 10px;
+    color: white;
+    padding: 0.5rem 1.5rem;
+    cursor: pointer;
+
+    &:hover {
+      background-color: darken($color-negative, 10%);
+      transform: scale(1.1);
     }
   }
 
@@ -129,61 +161,8 @@
               text-align: center;
             }
 
-            .portfolio-page__theme-container {
-              color: $color-background;
-              background-color: $color-accent;
-              padding: 0.5rem 1rem;
-              border-radius: 20px;
-              border: solid orange;
-              margin-bottom: 0.5rem;
-              display: inline-block;
-              font-size: small;
-              white-space: nowrap;
-              overflow: hidden;
-              text-overflow: ellipsis;
-              max-width: 200px;
-
-              &:not(:last-child) {
-                margin-right: 5px; // Space between theme containers
-              }
-            }
-
-            .portfolio-page__remove-button {
-              background-color: $color-negative;
-              border: solid $color-negative 2px;
-              border-radius: 10px;
-              color: white;
-              padding: 0.5rem 1.5rem;
-              cursor: pointer;
-              transition: background-color 0.3s ease;
-
-              &:hover {
-                background-color: darken($color-negative, 10%);
-                transform: scale(1.1);
-              }
-
-              @include respond-to(tablet) {
-                font-size: 14px;
-              }
-            }
-
-            .portfolio-page__add-button {
-              background-color: $color-primary;
-              border: solid $color-primary 2px;
-              border-radius: 10px;
-              color: white;
-              padding: 0.5rem 1.5rem;
-              cursor: pointer;
-              transition: background-color 0.3s ease;
-
-              &:hover {
-                background-color: darken($color-primary, 10%);
-                transform: scale(1.1);
-              }
-
-              @include respond-to(tablet) {
-                font-size: 14px;
-              }
+            @include respond-to(tablet) {
+              font-size: 14px;
             }
           }
         }

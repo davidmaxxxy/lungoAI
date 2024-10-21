@@ -4,10 +4,11 @@ import Button from "../../components/Buttons/Button";
 import "./InvestmentIdeasPage.scss";
 
 function InvestmentIdeasPage({ impactData, investmentIdeas }) {
+  // InvestmentIdeasPage.jsx
+
   const handleAddToPortfolio = async (idea) => {
-    // Check if themeId is available in the impactData
-    if (!impactData.theme_id) {
-      console.error("Cannot add to portfolio: themeId is missing.");
+    if (!impactData.themeId) {
+      console.error("Cannot add to portfolio: themeId is missing.", impactData);
       return;
     }
 
@@ -15,10 +16,12 @@ function InvestmentIdeasPage({ impactData, investmentIdeas }) {
       const requestData = {
         userId: 1, // Replace with the correct user ID, ideally from user authentication/session management
         investmentIdea: idea,
-        themeId: impactData.theme_id, // Ensure themeId is passed here
+        themeIds: Array.isArray(impactData.themeId)
+          ? impactData.themeId
+          : [impactData.themeId],
       };
 
-      console.log("Adding to portfolio:", requestData);
+      console.log("Adding to portfolio with requestData:", requestData);
 
       const response = await axios.post(
         "http://localhost:5001/api/portfolio/add",
@@ -43,6 +46,7 @@ function InvestmentIdeasPage({ impactData, investmentIdeas }) {
           <table>
             <thead>
               <tr>
+                <th>#</th>
                 <th>Ticker</th>
                 <th>Name</th>
                 <th>Asset Type</th>
@@ -55,6 +59,7 @@ function InvestmentIdeasPage({ impactData, investmentIdeas }) {
             <tbody>
               {investmentIdeas.map((idea, index) => (
                 <tr key={index}>
+                  <td>{index + 1}</td>
                   <td>{idea.ticker}</td>
                   <td>{idea.name}</td>
                   <td>{idea.assetType}</td>
@@ -80,4 +85,3 @@ function InvestmentIdeasPage({ impactData, investmentIdeas }) {
 }
 
 export default InvestmentIdeasPage;
-ç

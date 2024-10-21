@@ -9,6 +9,8 @@ function WorkflowManagementPage() {
   const [impactData, setImpactData] = useState(null);
   const [investmentIdeas, setInvestmentIdeas] = useState([]);
 
+  // WorkflowManagementPage.jsx
+
   const handleNextStage = (data = null) => {
     console.log("Moving to next stage, current active stage:", activeStage);
     console.log("Data received for next stage:", data);
@@ -17,9 +19,11 @@ function WorkflowManagementPage() {
     if (data) {
       if (activeStage === 1) {
         // Stage 1 to Stage 2 - Saving impact analysis data
+        console.log("Saving impact analysis data with themeId:", data.theme_id);
         setImpactData(data);
       } else if (activeStage === 2) {
         // Stage 2 to Stage 3 - Saving investment ideas
+        console.log("Saving investment ideas with themeId:", data.themeId);
         setInvestmentIdeas(data.investmentIdeas);
         setImpactData((prevImpactData) => ({
           ...prevImpactData,

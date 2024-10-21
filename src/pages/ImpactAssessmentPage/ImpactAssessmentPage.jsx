@@ -31,11 +31,14 @@ function ImpactAssessmentPage({ data, onNextStage }) {
     return null;
   }
 
+  // ImpactAssessmentPage.jsx
+
   const handleGenerateInvestmentIdeas = async () => {
     setIsLoading(true);
     setError("");
 
     try {
+      console.log("Sending impact assessment ID:", data.id);
       const response = await axios.post(
         "http://localhost:5001/api/ideas/generate-investment-ideas",
         {
@@ -45,7 +48,10 @@ function ImpactAssessmentPage({ data, onNextStage }) {
 
       if (response.status === 200) {
         const { impact_assessment_id, investmentIdeas } = response.data;
-        const themeId = data.theme_id; // Extract themeId to ensure it's available
+        const themeId = data.theme_id;
+
+        console.log("Received response with themeId:", themeId);
+
         if (!themeId) {
           console.error("ThemeId is missing in impactData:", data);
           setError(

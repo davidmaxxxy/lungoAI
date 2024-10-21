@@ -13,22 +13,19 @@
   text-align: center;
   font-size: 2rem;
 }
-.portfolio-page__error-message {
-  color: #ffc857;
+.portfolio-page__error-message, .portfolio-page__success-message {
   margin-top: 1rem;
   text-align: center;
   font-weight: bold;
   padding: 1rem;
   border-radius: 5px;
 }
-.portfolio-page__success-message {
+.portfolio-page__error-message--error, .portfolio-page__success-message--error {
+  color: #ffc857;
+}
+.portfolio-page__error-message--success, .portfolio-page__success-message--success {
   color: #c3f564;
-  margin-top: 1rem;
-  text-align: center;
-  font-weight: bold;
   background-color: #121212;
-  padding: 1rem;
-  border-radius: 5px;
 }
 .portfolio-page__empty-message {
   display: flex;
@@ -40,7 +37,7 @@
   text-align: center;
   font-size: 1.2rem;
 }
-.portfolio-page__empty-message .portfolio-page__cta-button {
+.portfolio-page__empty-message__cta-button {
   margin-top: 1.5rem;
   background-color: #c3f564;
   border: none;
@@ -50,21 +47,50 @@
   border-radius: 20px;
   border: solid #4b7f52;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  animation: bounce 2s infinite;
 }
-.portfolio-page__empty-message .portfolio-page__cta-button:hover {
+.portfolio-page__empty-message__cta-button:hover {
   background-color: #b0f234;
   transform: scale(1.05);
 }
-.portfolio-page__empty-message .portfolio-page__cta-button:active {
+.portfolio-page__empty-message__cta-button:active {
   transform: scale(0.95);
 }
 @media (min-width: 768px) {
-  .portfolio-page__empty-message .portfolio-page__cta-button {
+  .portfolio-page__empty-message__cta-button {
     font-size: 1rem;
     padding: 0.6rem 1.5rem;
   }
+}
+.portfolio-page__theme-container {
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+}
+.portfolio-page__theme-container--theme {
+  color: #121212;
+  background-color: #ffc857;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  border: solid orange;
+  margin: 0.3rem;
+  display: inline-block;
+  font-size: small;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+}
+.portfolio-page__remove-button {
+  background-color: #ff6b6b;
+  border: solid red;
+  border-radius: 10px;
+  color: white;
+  padding: 0.5rem 1.5rem;
+  cursor: pointer;
+}
+.portfolio-page__remove-button:hover {
+  background-color: #ff3838;
+  transform: scale(1.1);
 }
 .portfolio-page__table {
   width: 100%;
@@ -115,56 +141,8 @@
     text-align: center;
   }
 }
-.portfolio-page__table-element tbody tr td .portfolio-page__theme-container {
-  color: #121212;
-  background-color: #ffc857;
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
-  border: solid orange;
-  margin-bottom: 0.5rem;
-  display: inline-block;
-  font-size: small;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 200px;
-}
-.portfolio-page__table-element tbody tr td .portfolio-page__theme-container:not(:last-child) {
-  margin-right: 5px;
-}
-.portfolio-page__table-element tbody tr td .portfolio-page__remove-button {
-  background-color: #ff6b6b;
-  border: solid #ff6b6b 2px;
-  border-radius: 10px;
-  color: white;
-  padding: 0.5rem 1.5rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-.portfolio-page__table-element tbody tr td .portfolio-page__remove-button:hover {
-  background-color: #ff3838;
-  transform: scale(1.1);
-}
 @media (min-width: 768px) {
-  .portfolio-page__table-element tbody tr td .portfolio-page__remove-button {
-    font-size: 14px;
-  }
-}
-.portfolio-page__table-element tbody tr td .portfolio-page__add-button {
-  background-color: #c3f564;
-  border: solid #c3f564 2px;
-  border-radius: 10px;
-  color: white;
-  padding: 0.5rem 1.5rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-.portfolio-page__table-element tbody tr td .portfolio-page__add-button:hover {
-  background-color: #b0f234;
-  transform: scale(1.1);
-}
-@media (min-width: 768px) {
-  .portfolio-page__table-element tbody tr td .portfolio-page__add-button {
+  .portfolio-page__table-element tbody tr td {
     font-size: 14px;
   }
 }/*# sourceMappingURL=PortfolioPage.css.map */
