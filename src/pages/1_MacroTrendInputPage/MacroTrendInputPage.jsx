@@ -36,34 +36,35 @@ function MacroTrendInputPage({ onNextStage }) {
     } catch (error) {
       console.error("Error generating impact analysis:", error);
       setError("Failed to generate impact analysis. Please try again.");
-    } finally {
-      setIsLoading(false);
+      setIsLoading(false); // Re-enable form if an error occurs
     }
   };
 
   return (
     <div className="macro-trend-input-page">
-      <form
-        className="macro-trend-input-page__form"
-        onSubmit={handleFormSubmit}
-      >
-        <h2 className="macro-trend-input-page__form--header">
-          Describe macro trend
-        </h2>
-        <textarea
-          className="macro-trend-input-page__form--textarea"
-          value={themeDescription}
-          onChange={(e) => setThemeDescription(e.target.value)}
-          placeholder="Provide a short theme description... E.g. US Elections - Trump vs Harris"
-          rows={4}
-          required
-        />
-        <Button
-          text={isLoading ? "Generating..." : "Generate Impact Assessment"}
-          type={"submit"}
-          disabled={isLoading}
-        />
-      </form>
+      {!isLoading && (
+        <form
+          className="macro-trend-input-page__form"
+          onSubmit={handleFormSubmit}
+        >
+          <h2 className="macro-trend-input-page__form--header">
+            Describe macro trend
+          </h2>
+          <textarea
+            className="macro-trend-input-page__form--textarea"
+            value={themeDescription}
+            onChange={(e) => setThemeDescription(e.target.value)}
+            placeholder="Provide a short theme description... E.g. US Elections - Trump vs Harris"
+            rows={4}
+            required
+          />
+          <Button
+            text={isLoading ? "Generating..." : "Generate Impact Assessment"}
+            type={"submit"}
+            disabled={isLoading}
+          />
+        </form>
+      )}
 
       {isLoading && (
         <Loading message="Generating impact assessment... This might take up to 1 min." />

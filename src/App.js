@@ -4,8 +4,8 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./styles/main.scss";
 import Header from "./components/Header/Header";
 import Hero from "./components/Hero/Hero";
-import WorkflowManagementPage from "./pages/WorkflowManagement/WorkflowManagementPage";
-import PortfolioPage from "./pages/PortfolioPage/PortfolioPage";
+import WorkflowManagementPage from "./pages/0_WorkflowManagement/WorkflowManagementPage";
+import PortfolioPage from "./pages/4_PortfolioPage/PortfolioPage";
 
 function App() {
   return (

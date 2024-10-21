@@ -1,8 +1,8 @@
 // WorkflowManagementPage.jsx
 import React, { useState } from "react";
-import MacroTrendInputPage from "../MacroTrendInputPage/MacroTrendInputPage";
-import ImpactAssessmentPage from "../ImpactAssessmentPage/ImpactAssessmentPage";
-import InvestmentIdeasPage from "../InvestmentIdeasPage/InvestmentIdeasPage";
+import MacroTrendInputPage from "../1_MacroTrendInputPage/MacroTrendInputPage";
+import ImpactAssessmentPage from "../2_ImpactAssessmentPage/ImpactAssessmentPage";
+import InvestmentIdeasPage from "../3_InvestmentIdeasPage/InvestmentIdeasPage";
 import Header from "../../components/Header/Header";
 import "./WorkflowManagementPage.scss";
 
