@@ -13,6 +13,8 @@ function MacroTrendInputPage({ onNextStage, onPreviousStage }) {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 
+  const backendUrl = process.env.REACT_APP_BACKEND_URL;
+
   useEffect(() => {
     localStorage.setItem("themeDescription", themeDescription);
   }, [themeDescription]);
@@ -29,7 +31,7 @@ function MacroTrendInputPage({ onNextStage, onPreviousStage }) {
 
     try {
       const response = await axios.post(
-        "http://localhost:5001/api/impact/generate-impact-analysis",
+        `${backendUrl}/api/impact/generate-impact-analysis`,
         payload
       );
 

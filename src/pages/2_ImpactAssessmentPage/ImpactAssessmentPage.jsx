@@ -18,6 +18,8 @@ function ImpactAssessmentPage({ data, onNextStage, onPreviousStage }) {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 
+  const backendUrl = process.env.REACT_APP_BACKEND_URL;
+
   useEffect(() => {
     if (data) {
       localStorage.setItem("impactData", JSON.stringify(data));
@@ -44,7 +46,7 @@ function ImpactAssessmentPage({ data, onNextStage, onPreviousStage }) {
 
     try {
       const response = await axios.post(
-        "http://localhost:5001/api/ideas/generate-investment-ideas",
+        `${backendUrl}/api/ideas/generate-investment-ideas`,
         {
           impact_assessment_id: data.id,
         }

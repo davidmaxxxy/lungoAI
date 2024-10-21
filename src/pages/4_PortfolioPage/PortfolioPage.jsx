@@ -12,6 +12,7 @@ function PortfolioPage() {
   const [errorPortfolio, setErrorPortfolio] = useState("");
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
 
+  const backendUrl = process.env.REACT_APP_BACKEND_URL;
   const navigate = useNavigate();
 
   const handleCTAButtonClick = () => {
@@ -25,9 +26,7 @@ function PortfolioPage() {
   useEffect(() => {
     const fetchPortfolio = async () => {
       try {
-        const response = await axios.get(
-          "http://localhost:5001/api/portfolio/1"
-        );
+        const response = await axios.get(`${backendUrl}/api/portfolio/1`);
         if (response.status === 200) {
           setPortfolio(response.data);
         } else {
@@ -47,7 +46,7 @@ function PortfolioPage() {
   const handleRemoveFromPortfolio = async (ideaId) => {
     try {
       const response = await axios.delete(
-        `http://localhost:5001/api/portfolio/1/${ideaId}`
+        `${backendUrl}/api/portfolio/1/${ideaId}`
       );
       if (response.status === 200) {
         setPortfolio((prev) => prev.filter((item) => item.id !== ideaId));

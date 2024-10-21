@@ -13,6 +13,8 @@ function InvestmentIdeasPage({
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
   const [addedIdeas, setAddedIdeas] = useState(new Set());
 
+  const backendUrl = process.env.REACT_APP_BACKEND_URL;
+
   useEffect(() => {
     if (investmentIdeas.length > 0) {
       localStorage.setItem("investmentIdeas", JSON.stringify(investmentIdeas));
@@ -37,7 +39,7 @@ function InvestmentIdeasPage({
       console.log("Adding to portfolio with requestData:", requestData);
 
       const response = await axios.post(
-        "http://localhost:5001/api/portfolio/add",
+        `${backendUrl}/api/portfolio/add`,
         requestData
       );
 
