@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Button from "../../components/Buttons/Button";
 import Loading from "../../components/Loading/Loading";
 import "./ImpactAssessmentPage.scss";
+import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChartLine,
@@ -11,16 +12,10 @@ import {
   faMoneyBillAlt,
   faBitcoinSign,
 } from "@fortawesome/free-solid-svg-icons";
-import axios from "axios";
 
 function ImpactAssessmentPage({ data, onNextStage }) {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
-
-  if (!data || !data.impact_analysis || !data.impact_analysis.asset_classes) {
-    console.error("Impact data is missing or incomplete:", data);
-    return null;
-  }
 
   const assetClassIcons = {
     Stocks: faChartLine,
@@ -30,6 +25,11 @@ function ImpactAssessmentPage({ data, onNextStage }) {
     Currencies: faMoneyBillAlt,
     Cryptocurrencies: faBitcoinSign,
   };
+
+  if (!data || !data.impact_analysis || !data.impact_analysis.asset_classes) {
+    console.error("Impact data is missing or incomplete:", data);
+    return null;
+  }
 
   const handleGenerateInvestmentIdeas = async () => {
     setIsLoading(true);
@@ -45,11 +45,27 @@ function ImpactAssessmentPage({ data, onNextStage }) {
 
       if (response.status === 200) {
         const { impact_assessment_id, investmentIdeas } = response.data;
-        onNextStage({ id: impact_assessment_id, investmentIdeas });
+        const themeId = data.theme_id; // Extract themeId to ensure it's available
+        if (!themeId) {
+          console.error("ThemeId is missing in impactData:", data);
+          setError(
+            "Failed to generate investment ideas due to missing themeId."
+          );
+          setIsLoading(false);
+          return;
+        }
+
+        onNextStage({
+          id: impact_assessment_id,
+          themeId, // Pass themeId to the next stage
+          investmentIdeas,
+        });
+      } else {
+        setError("Failed to generate investment ideas.");
       }
     } catch (err) {
-      console.error("Error generating investment ideas", err);
-      setError("Failed to generate investment ideas. Please try again");
+      console.error("Error generating investment ideas:", err);
+      setError("Failed to generate investment ideas. Please try again.");
     } finally {
       setIsLoading(false);
     }
@@ -88,19 +104,16 @@ function ImpactAssessmentPage({ data, onNextStage }) {
         </div>
       ))}
 
-      {error && <div className="error-message">{error}</div>}
-
       {isLoading ? (
         <Loading message="Generating investment ideas... This might take up to 1 min." />
       ) : (
-        <div className="impact-assessment-page__generate-ideas-button-container">
-          <Button
-            text="Generate Investment Ideas"
-            className="stages-button"
-            onClick={handleGenerateInvestmentIdeas}
-          />
-        </div>
+        <Button
+          text="Generate Investment Ideas"
+          className="stages-button"
+          onClick={handleGenerateInvestmentIdeas}
+        />
       )}
+      {error && <div className="error-message">{error}</div>}
     </div>
   );
 }

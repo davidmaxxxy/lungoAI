@@ -14,6 +14,65 @@
     color: $color-primary;
     margin-bottom: 1.5rem;
     text-align: center;
+    font-size: 2rem;
+  }
+
+  &__error-message {
+    color: $color-accent;
+    margin-top: 1rem;
+    text-align: center;
+    font-weight: bold;
+    padding: 1rem;
+    border-radius: 5px;
+  }
+
+  &__success-message {
+    color: $color-primary;
+    margin-top: 1rem;
+    text-align: center;
+    font-weight: bold;
+    background-color: $color-background;
+    padding: 1rem;
+    border-radius: 5px;
+  }
+
+  &__empty-message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: $color-accent;
+    margin-top: 1rem;
+    text-align: center;
+    font-size: 1.2rem;
+
+    .portfolio-page__cta-button {
+      margin-top: 1.5rem;
+      background-color: $color-primary;
+      border: none;
+      color: $color-background;
+      font-size: 1rem;
+      padding: 0.8rem 2rem;
+      border-radius: 20px;
+      border: solid $color-secondary;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      animation: bounce 2s infinite;
+
+      &:hover {
+        background-color: darken($color-primary, 10%);
+        transform: scale(1.05);
+      }
+
+      &:active {
+        transform: scale(0.95);
+      }
+
+      @include respond-to(tablet) {
+        font-size: 1rem;
+        padding: 0.6rem 1.5rem;
+      }
+    }
   }
 
   &__table {
@@ -21,6 +80,7 @@
     overflow-x: auto;
     border-radius: 20px;
     box-shadow: 0px 4px 10px $color-primary;
+    margin-top: 2rem;
 
     @include respond-to(tablet) {
       width: 80%;
@@ -106,21 +166,28 @@
                 font-size: 14px;
               }
             }
+
+            .portfolio-page__add-button {
+              background-color: $color-primary;
+              border: solid $color-primary 2px;
+              border-radius: 10px;
+              color: white;
+              padding: 0.5rem 1.5rem;
+              cursor: pointer;
+              transition: background-color 0.3s ease;
+
+              &:hover {
+                background-color: darken($color-primary, 10%);
+                transform: scale(1.1);
+              }
+
+              @include respond-to(tablet) {
+                font-size: 14px;
+              }
+            }
           }
         }
       }
     }
-  }
-
-  &__error-message {
-    color: $color-accent;
-    margin-top: 1rem;
-    text-align: center;
-  }
-
-  &__empty-message {
-    color: $color-accent;
-    margin-top: 1rem;
-    text-align: center;
   }
 }

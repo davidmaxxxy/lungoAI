@@ -7,13 +7,11 @@ import Loading from "../../components/Loading/Loading";
 function MacroTrendInputPage({ onNextStage }) {
   const [themeDescription, setThemeDescription] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [formSubmitted, setFormSubmitted] = useState(false);
   const [error, setError] = useState("");
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    setFormSubmitted(true);
     setError("");
 
     const payload = {
@@ -37,8 +35,7 @@ function MacroTrendInputPage({ onNextStage }) {
       }
     } catch (error) {
       console.error("Error generating impact analysis:", error);
-      setError("Failed to generate impact analysis. Please try again");
-      setFormSubmitted(false);
+      setError("Failed to generate impact analysis. Please try again.");
     } finally {
       setIsLoading(false);
     }
@@ -46,29 +43,27 @@ function MacroTrendInputPage({ onNextStage }) {
 
   return (
     <div className="macro-trend-input-page">
-      {!formSubmitted && (
-        <form
-          className="macro-trend-input-page__form"
-          onSubmit={handleFormSubmit}
-        >
-          <h2 className="macro-trend-input-page__form--header">
-            Describe macro trend
-          </h2>
-          <textarea
-            className="macro-trend-input-page__form--textarea"
-            value={themeDescription}
-            onChange={(e) => setThemeDescription(e.target.value)}
-            placeholder="Provide a short theme description... E.g. US Elections - Trump vs Harris"
-            rows={4}
-            required
-          />
-          <Button
-            text={isLoading ? "Generating..." : "Generate Impact Assessment"}
-            type={"submit"}
-            disabled={isLoading}
-          />
-        </form>
-      )}
+      <form
+        className="macro-trend-input-page__form"
+        onSubmit={handleFormSubmit}
+      >
+        <h2 className="macro-trend-input-page__form--header">
+          Describe macro trend
+        </h2>
+        <textarea
+          className="macro-trend-input-page__form--textarea"
+          value={themeDescription}
+          onChange={(e) => setThemeDescription(e.target.value)}
+          placeholder="Provide a short theme description... E.g. US Elections - Trump vs Harris"
+          rows={4}
+          required
+        />
+        <Button
+          text={isLoading ? "Generating..." : "Generate Impact Assessment"}
+          type={"submit"}
+          disabled={isLoading}
+        />
+      </form>
 
       {isLoading && (
         <Loading message="Generating impact assessment... This might take up to 1 min." />
