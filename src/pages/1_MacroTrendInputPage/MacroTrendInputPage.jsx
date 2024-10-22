@@ -29,12 +29,19 @@ function MacroTrendInputPage({ onNextStage, onPreviousStage }) {
       user_id: 1,
     };
 
+    console.log("Payload to be sent:", payload);
+    console.log(
+      "Backend URL:",
+      `${backendUrl}/api/impact/generate-impact-analysis`
+    );
+
     try {
       const response = await axios.post(
         `${backendUrl}/api/impact/generate-impact-analysis`,
         payload
       );
 
+      console.log("Response received:", response);
       if (response.status === 200) {
         onNextStage({
           ...response.data,
